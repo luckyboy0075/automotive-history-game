@@ -17,4 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#languageSelect").addEventListener("change", (event) => {
         updateText(event.target.value);
     });
+
+    updateText("en"); // Set default
 });

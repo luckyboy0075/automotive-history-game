@@ -8,8 +8,8 @@ document.querySelector("form").addEventListener("submit", (e) => {
     fetch('./content/contact_messages.json', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
+        body: JSON.stringify({ name, email, message, timestamp: new Date().toISOString() })
     })
-    .then(() => alert("Message successfully saved!"))
-    .catch(() => alert("Failed to save message."));
+    .then(() => alert("Message saved successfully!"))
+    .catch(() => alert("Error saving message."));
 });

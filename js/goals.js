@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             data.forEach(goal => {
                 const goalElement = document.createElement("li");
-                goalElement.textContent = `${goal.title}: ${goal.description}`;
+                goalElement.textContent = `${goal.title}: ${goal.status ? goal.status : "Pending"}`;
 
                 if (goal.status === "Completed") {
                     completedGoals.appendChild(goalElement);
-                } else if (goal.status === "Planned") {
+                } else {
                     futureGoals.appendChild(goalElement);
                 }
             });
