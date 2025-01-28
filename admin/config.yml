@@ -12,9 +12,8 @@ collections:
     folder: "content/key_features"
     create: true
     fields:
-      - { name: "title", label: "Feature Title", widget: "string" }
-      - { name: "description", label: "Feature Description", widget: "text" }
-
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "description", label: "Description", widget: "text" }
   - name: "goals"
     label: "Goals"
     folder: "content/goals"
@@ -23,9 +22,8 @@ collections:
       - { name: "title", label: "Goal Title", widget: "string" }
       - { name: "status", label: "Status", widget: "select", options: ["Planned", "In Progress", "Completed"] }
       - { name: "description", label: "Goal Description", widget: "text" }
-
   - name: "media"
-    label: "Media Gallery"
+    label: "Media"
     folder: "content/media"
     create: true
     fields:

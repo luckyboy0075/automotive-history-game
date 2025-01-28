@@ -1,29 +1,27 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    function loadMedia() {
+    const loadMedia = () => {
         fetch('./content/media.json')
-            .then(response => response.json())
-            .then(data => {
-                const mediaGallery = document.querySelector(".media-gallery");
-                mediaGallery.innerHTML = "";  // Clear gallery before reloading
-
-                data.forEach(media => {
+            .then((response) => response.json())
+            .then((mediaData) => {
+                const mediaContainer = document.querySelector(".media-gallery");
+                mediaContainer.innerHTML = "";
+                mediaData.forEach((media) => {
                     const mediaItem = document.createElement("div");
                     mediaItem.className = "media-item";
-
-                    let mediaContent = "";
                     if (media.media_type === "Image") {
-                        mediaContent = `<img src="${media.media_url}" alt="${media.media_title}"><p>${media.media_description}</p>`;
+                        mediaItem.innerHTML = `<img src="${media.media_url}" alt="${media.media_title}">
+                                               <p>${media.media_description}</p>`;
                     } else if (media.media_type === "Video") {
-                        mediaContent = `<video controls><source src="${media.media_url}" type="video/mp4">Your browser does not support videos.</video><p>${media.media_description}</p>`;
+                        mediaItem.innerHTML = `<video controls>
+                                                <source src="${media.media_url}" type="video/mp4">
+                                                </video><p>${media.media_description}</p>`;
                     }
-
-                    mediaItem.innerHTML = mediaContent;
-                    mediaGallery.appendChild(mediaItem);
+                    mediaContainer.appendChild(mediaItem);
                 });
             })
-            .catch(error => console.error("Error loading media:", error));
-    }
+            .catch((error) => console.error("Media Loading Error:", error));
+    };
 
-    setInterval(loadMedia, 5000);  // Auto-refresh media every 5 seconds
+    setInterval(loadMedia, 5000); // Refresh media every 5 seconds
 });
