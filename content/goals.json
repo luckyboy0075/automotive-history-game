@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Website Launch",
+        "status": "Completed",
+        "progress": 100
+    },
+    {
+        "title": "Localization Implemented",
+        "status": "Completed",
+        "progress": 100
+    },
+    {
+        "title": "Advanced Driving Physics",
+        "status": "Planned",
+        "progress": 50
+    },
+    {
+        "title": "Expand Storytelling Mode",
+        "status": "Planned",
+        "progress": 20
+    }
+]

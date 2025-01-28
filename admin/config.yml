@@ -11,8 +11,29 @@ collections:
     folder: "content/key_features"
     create: true
     fields:
-      - { name: "feature_title", label: "Feature Title", widget: "string" }
-      - { name: "feature_description", label: "Feature Description", widget: "text" }
+      - { name: "title", label: "Feature Title", widget: "string" }
+      - { name: "description", label: "Feature Description", widget: "text" }
+      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
+
+  - name: "goals"
+    label: "Goals Page"
+    folder: "content/goals"
+    create: true
+    fields:
+      - { name: "title", label: "Goal Title", widget: "string" }
+      - { name: "status", label: "Status", widget: "select", options: ["Completed", "In Progress", "Planned"] }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "progress", label: "Progress (%)", widget: "number", value_type: "int", min: 0, max: 100 }
+      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
+
+  - name: "media"
+    label: "Media Gallery"
+    folder: "content/media"
+    create: true
+    fields:
+      - { name: "media_title", label: "Title", widget: "string" }
+      - { name: "media_url", label: "Media URL", widget: "string" }
+      - { name: "media_type", label: "Type", widget: "select", options: ["Image", "Video"] }
       - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
 
   - name: "contacts"
@@ -20,8 +41,8 @@ collections:
     folder: "content/contacts"
     create: true
     fields:
-      - { name: "contact_form_title", label: "Form Title", widget: "string" }
-      - { name: "contact_form_description", label: "Form Description", widget: "text" }
+      - { name: "form_title", label: "Form Title", widget: "string" }
+      - { name: "form_description", label: "Form Description", widget: "text" }
       - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
 
   - name: "subscribe"
@@ -29,16 +50,6 @@ collections:
     folder: "content/subscribe"
     create: true
     fields:
-      - { name: "subscribe_form_title", label: "Form Title", widget: "string" }
-      - { name: "subscribe_form_description", label: "Form Description", widget: "text" }
-      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
-
-  - name: "localization"
-    label: "Localization Settings"
-    folder: "content/localization"
-    create: true
-    fields:
-      - { name: "page", label: "Page", widget: "string" }
-      - { name: "field", label: "Field", widget: "string" }
-      - { name: "value", label: "Localized Value", widget: "text" }
+      - { name: "form_title", label: "Form Title", widget: "string" }
+      - { name: "form_description", label: "Form Description", widget: "text" }
       - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
