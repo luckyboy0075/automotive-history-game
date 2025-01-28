@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+    <index>
+        <lang code="en">
+            <mainTitle>Discover the Untold History of Cars</mainTitle>
+            <aboutTitle>About the Game</aboutTitle>
+            <aboutDesc>Automotive History Game is a unique blend of storytelling and simulation, designed to educate and entertain.</aboutDesc>
+        </lang>
+        <lang code="fr">
+            <mainTitle>Découvrez l'histoire inédite des voitures</mainTitle>
+            <aboutTitle>À propos du jeu</aboutTitle>
+            <aboutDesc>Automotive History Game est un mélange unique de narration et de simulation, conçu pour éduquer et divertir.</aboutDesc>
+        </lang>
+        <lang code="de">
+            <mainTitle>Entdecken Sie die unentdeckte Geschichte der Autos</mainTitle>
+            <aboutTitle>Über das Spiel</aboutTitle>
+            <aboutDesc>Automotive History Game ist eine einzigartige Mischung aus Erzählung und Simulation, entwickelt, um zu bilden und zu unterhalten.</aboutDesc>
+        </lang>
+        <lang code="es">
+            <mainTitle>Descubre la historia no contada de los automóviles</mainTitle>
+            <aboutTitle>Acerca del juego</aboutTitle>
+            <aboutDesc>Automotive History Game es una mezcla única de narración y simulación, diseñada para educar y entretener.</aboutDesc>
+        </lang>
+        <lang code="it">
+            <mainTitle>Scopri la storia inedita delle automobili</mainTitle>
+            <aboutTitle>Informazioni sul gioco</aboutTitle>
+            <aboutDesc>Automotive History Game è un mix unico di narrazione e simulazione, progettato per educare e intrattenere.</aboutDesc>
+        </lang>
+        <lang code="uk">
+            <mainTitle>Відкрийте невідому історію автомобілів</mainTitle>
+            <aboutTitle>Про гру</aboutTitle>
+            <aboutDesc>Automotive History Game - це унікальне поєднання розповіді та симуляції, розроблене для навчання та розваг.</aboutDesc>
+        </lang>
+    </index>
+</translations>
