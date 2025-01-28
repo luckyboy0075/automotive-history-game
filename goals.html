@@ -1,106 +1,25 @@
 
-<nav>
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contact Us</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-</nav>
-
-
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contacts</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-
 <!DOCTYPE html>
-<html lang="en" data-page="goals">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Goals</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./js/main.js"></script>
-    <script defer src="./js/goals.js"></script>
+    <title>Goals</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/progress_bar.js" defer></script>
 </head>
 <body>
-    
-
-
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contacts</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-
-
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contacts</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-
-
-        <a href="index.html">Home</a> 
-        <a href="media.html">Media</a> 
-        <a href="contacts.html">Contacts</a> 
-        <a href="subscribe.html">Subscribe</a>
-        <a href="goals.html">Goals</a>
-        <select id="languageSelect">
-            <option value="en">🇺🇸 English</option>
-            <option value="fr">🇫🇷 French</option>
-            <option value="de">🇩🇪 German</option>
-            <option value="es">🇪🇸 Spanish</option>
-            <option value="it">🇮🇹 Italian</option>
-            <option value="uk">🇺🇦 Ukrainian</option>
-        </select>
-    
-    <section>
-        <h2 data-translate="goalsTitle">Project Goals</h2>
-        
-        <h3 data-translate="completedGoals">✅ Completed Goals</h3>
-        <ul id="completed-goals"></ul>
-
-        <h3 data-translate="futureGoals">🚀 Future Goals</h3>
-        <ul id="future-goals"></ul>
-
-        <h3 data-translate="progress">📊 Progress</h3>
-        <div class="progress-bar-container">
-            <div id="progress-bar" class="progress-bar"></div>
-        </div>
-    </section>
+    <header>
+        <h1>Goals</h1>
+    </header>
+    <main>
+        <section id="goals" class="dynamic-section">
+            <h2 id="goalsTitle">Goals</h2>
+            <div id="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">Loading goals...</div>
+        </section>
+    </main>
 </body>
 </html>

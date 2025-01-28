@@ -1,99 +1,22 @@
 
-<nav>
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contact Us</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-</nav>
-
-
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contacts</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-
 <!DOCTYPE html>
-<html lang="en" data-page="subscribe">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Subscribe</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./js/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Updates</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/forms.js" defer></script>
 </head>
 <body>
-    
-
-
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contacts</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-
-
-    <a href="index.html">Home</a> 
-    <a href="media.html">Media</a> 
-    <a href="contacts.html">Contacts</a> 
-    <a href="subscribe.html">Subscribe</a>
-    <a href="goals.html">Goals</a>
-    <select id="languageSelect">
-        <option value="en">🇺🇸 English</option>
-        <option value="fr">🇫🇷 French</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-    </select>
-
-
-        <a href="index.html">Home</a> 
-        <a href="media.html">Media</a> 
-        <a href="contacts.html">Contacts</a> 
-        <a href="subscribe.html">Subscribe</a>
-        <a href="goals.html">Goals</a>
-        
-<select id="languageSelect">
-    <option value="en">🇺🇸 English</option>
-    <option value="fr">🇫🇷 French</option>
-    <option value="de">🇩🇪 German</option>
-    <option value="es">🇪🇸 Spanish</option>
-    <option value="it">🇮🇹 Italian</option>
-    <option value="uk">🇺🇦 Ukrainian</option>
-</select>
-
-    
-    <h2 data-translate="subscribeTitle">Subscribe for Updates</h2>
-    <form>
-        <label for="email" data-translate="emailLabel">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email">
-
-        <button type="submit" data-translate="subscribeButton">Subscribe</button>
-    </form>
+    <header>
+        <h1>Subscribe to Updates</h1>
+    </header>
+    <main>
+        <form id="subscribeForm">
+            <input type="email" id="subscribeEmail" placeholder="Your Email" required>
+            <button type="submit" id="subscribeButton">Subscribe to Updates</button>
+        </form>
+    </main>
 </body>
 </html>
