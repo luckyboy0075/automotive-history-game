@@ -1,3 +1,4 @@
+
 backend:
   name: git-gateway
   branch: main
@@ -6,50 +7,11 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "key_features"
-    label: "Key Features"
-    folder: "content/key_features"
-    create: true
-    fields:
-      - { name: "title", label: "Feature Title", widget: "string" }
-      - { name: "description", label: "Feature Description", widget: "text" }
-      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
-
-  - name: "goals"
-    label: "Goals Page"
-    folder: "content/goals"
-    create: true
-    fields:
-      - { name: "title", label: "Goal Title", widget: "string" }
-      - { name: "status", label: "Status", widget: "select", options: ["Completed", "In Progress", "Planned"] }
-      - { name: "description", label: "Description", widget: "text" }
-      - { name: "progress", label: "Progress (%)", widget: "number", value_type: "int", min: 0, max: 100 }
-      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
-
   - name: "media"
     label: "Media Gallery"
     folder: "content/media"
     create: true
     fields:
       - { name: "media_title", label: "Title", widget: "string" }
-      - { name: "media_url", label: "Media URL", widget: "string" }
+      - { name: "media_url", label: "Upload Media", widget: "image" }
       - { name: "media_type", label: "Type", widget: "select", options: ["Image", "Video"] }
-      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
-
-  - name: "contacts"
-    label: "Contact Page Fields"
-    folder: "content/contacts"
-    create: true
-    fields:
-      - { name: "form_title", label: "Form Title", widget: "string" }
-      - { name: "form_description", label: "Form Description", widget: "text" }
-      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
-
-  - name: "subscribe"
-    label: "Subscribe Page Fields"
-    folder: "content/subscribe"
-    create: true
-    fields:
-      - { name: "form_title", label: "Form Title", widget: "string" }
-      - { name: "form_description", label: "Form Description", widget: "text" }
-      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
