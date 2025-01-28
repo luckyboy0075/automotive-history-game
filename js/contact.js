@@ -1,5 +1,5 @@
 
-document.querySelector("form").addEventListener("submit", (e) => {
+document.querySelector("#contactForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const name = document.querySelector("#name").value;
     const email = document.querySelector("#email").value;

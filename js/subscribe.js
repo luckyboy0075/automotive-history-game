@@ -1,5 +1,5 @@
 
-document.querySelector("form").addEventListener("submit", (e) => {
+document.querySelector("#subscribeForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const email = document.querySelector("#email").value;
 
