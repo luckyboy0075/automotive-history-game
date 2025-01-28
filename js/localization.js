@@ -27,8 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     langSelect.addEventListener("change", () => {
-        applyTranslations(langSelect.value);
+        const selectedLang = langSelect.value;
+        localStorage.setItem("selectedLang", selectedLang);
+        applyTranslations(selectedLang);
     });
 
-    applyTranslations(langSelect.value || "en");
+    const savedLang = localStorage.getItem("selectedLang") || "en";
+    langSelect.value = savedLang;
+    applyTranslations(savedLang);
 });
