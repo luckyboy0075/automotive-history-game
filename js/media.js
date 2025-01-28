@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch('./content/media.json')
             .then((response) => response.json())
             .then((mediaData) => {
+                if (!Array.isArray(mediaData)) throw new Error("Invalid media data format");
                 const mediaContainer = document.querySelector(".media-gallery");
                 mediaContainer.innerHTML = "";
                 mediaData.forEach((media) => {

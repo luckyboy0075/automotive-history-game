@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function applyTranslations(lang) {
+        if (!translations[lang]) lang = "en";  // Fallback to English if unsupported language is selected
         Object.entries(elementsToTranslate).forEach(([key, selector]) => {
             const element = document.querySelector(selector);
             if (element) {
