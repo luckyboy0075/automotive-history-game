@@ -6,12 +6,39 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "goals"
-    label: "Goals Page"
-    folder: "content/goals"
+  - name: "key_features"
+    label: "Key Features"
+    folder: "content/key_features"
     create: true
     fields:
-      - { name: "title", label: "Goal Title", widget: "string" }
-      - { name: "status", label: "Status", widget: "select", options: ["Completed", "In Progress", "Planned"] }
-      - { name: "description", label: "Description", widget: "text" }
-      - { name: "progress", label: "Progress (%)", widget: "number", value_type: "int", min: 0, max: 100 }
+      - { name: "feature_title", label: "Feature Title", widget: "string" }
+      - { name: "feature_description", label: "Feature Description", widget: "text" }
+      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
+
+  - name: "contacts"
+    label: "Contact Page Fields"
+    folder: "content/contacts"
+    create: true
+    fields:
+      - { name: "contact_form_title", label: "Form Title", widget: "string" }
+      - { name: "contact_form_description", label: "Form Description", widget: "text" }
+      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
+
+  - name: "subscribe"
+    label: "Subscribe Page Fields"
+    folder: "content/subscribe"
+    create: true
+    fields:
+      - { name: "subscribe_form_title", label: "Form Title", widget: "string" }
+      - { name: "subscribe_form_description", label: "Form Description", widget: "text" }
+      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
+
+  - name: "localization"
+    label: "Localization Settings"
+    folder: "content/localization"
+    create: true
+    fields:
+      - { name: "page", label: "Page", widget: "string" }
+      - { name: "field", label: "Field", widget: "string" }
+      - { name: "value", label: "Localized Value", widget: "text" }
+      - { name: "language", label: "Language", widget: "select", options: ["en", "fr", "de", "es", "it", "uk"] }
