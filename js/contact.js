@@ -5,11 +5,11 @@ document.querySelector("form").addEventListener("submit", (e) => {
     const email = document.querySelector("#email").value;
     const message = document.querySelector("#message").value;
 
-    fetch("./content/contact_messages.json", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+    fetch('./content/contact_messages.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
     })
-    .then((response) => console.log("Message saved:", { name, email, message }))
-    .catch((error) => console.error("Error saving message:", error));
+    .then(() => alert("Message successfully saved!"))
+    .catch(() => alert("Failed to save message."));
 });
