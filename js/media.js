@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             const mediaGallery = document.querySelector(".media-gallery");
 
+            mediaGallery.innerHTML = "";
+
             data.forEach(media => {
                 const mediaItem = document.createElement("div");
                 mediaItem.className = "media-item";

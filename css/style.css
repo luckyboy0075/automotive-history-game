@@ -109,3 +109,37 @@ form button:hover {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2rem;
+    padding: 8px 15px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #0056b3;
+}
+
+#languageSelect {
+    padding: 6px 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}

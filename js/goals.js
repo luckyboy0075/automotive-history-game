@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const completedGoals = document.getElementById("completed-goals");
             const futureGoals = document.getElementById("future-goals");
 
+            completedGoals.innerHTML = "";
+            futureGoals.innerHTML = "";
+
             data.forEach(goal => {
                 const goalElement = document.createElement("li");
                 goalElement.textContent = `${goal.title}: ${goal.description}`;

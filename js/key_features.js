@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             const keyFeaturesContainer = document.getElementById("key-features");
 
+            keyFeaturesContainer.innerHTML = "";
+
             data.forEach(feature => {
                 const featureElement = document.createElement("div");
                 featureElement.className = "feature";
