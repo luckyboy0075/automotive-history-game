@@ -4,19 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscribe to Updates</title>
+    <title>Subscribe for Updates</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/forms.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Subscribe to Updates</h1>
+        <h1>Subscribe for Updates</h1>
     </header>
     <main>
-        <form id="subscribeForm">
-            <input type="email" id="subscribeEmail" placeholder="Your Email" required>
-            <button type="submit" id="subscribeButton">Subscribe to Updates</button>
+        <form id="subscribe-form">
+            <label for="email">Enter your email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Subscribe</button>
         </form>
+        <p id="success-message" style="display: none;">Thank you for subscribing!</p>
     </main>
+    <footer>
+        <p>&copy; 2025 Automotive History Game. All rights reserved.</p>
+    </footer>
 </body>
 </html>

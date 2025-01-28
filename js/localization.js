@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         uk: { contact_us: "Зв'яжіться з нами", subscribe_updates: "Підписатися на оновлення", key_features: "Ключові особливості" }
     };
 
-    const langSelect = document.getElementById("languageSelect");
+    const langSelect = document.getElementById("language");
     const elementsToTranslate = {
         contact_us: "#contactButton",
         subscribe_updates: "#subscribeButton",

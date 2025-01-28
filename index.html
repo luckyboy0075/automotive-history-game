@@ -4,52 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automotive History Project</title>
+    <title>Automotive History Game</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/localization.js" defer></script>
-    <script src="js/language_selector.js" defer></script>
-    <script src="js/forms.js" defer></script>
-    <script src="js/media.js" defer></script>
-    <script src="js/progress_bar.js" defer></script>
+    <script src="js/theme_switcher.js" defer></script>
+    <script src="js/dynamic_content.js" defer></script>
 </head>
 <body>
     <header>
-        <h1 id="keyFeaturesTitle">Key Features</h1>
-        <select id="languageSelect">
-            <option value="en">English</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-            <option value="es">Spanish</option>
-            <option value="it">Italian</option>
-            <option value="uk">Ukrainian</option>
-        </select>
+        <h1>Welcome to the Automotive History Game</h1>
+        <div id="language-selector">
+            <label for="language">Choose Language:</label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="it">Italian</option>
+                <option value="de">German</option>
+                <option value="es">Spanish</option>
+                <option value="uk">Ukrainian</option>
+            </select>
+        </div>
+        <div id="theme-switcher">
+            <button id="dark-theme">Dark Theme</button>
+            <button id="light-theme">Light Theme</button>
+        </div>
     </header>
     <main>
-        <section id="features" class="dynamic-section">
-            <!-- Dynamically updated Key Features from CMS -->
+        <section id="banner">
+            <h2>The Future of Automotive History</h2>
+            <p>Discover the untold stories behind the evolution of the automotive industry.</p>
         </section>
-        <section id="media-gallery" class="media-gallery">
-            <!-- Dynamically updated gallery -->
+        <section id="features">
+            <h2>Key Features</h2>
+            <!-- Dynamic content will be inserted here -->
         </section>
-        <section id="goals" class="dynamic-section">
-            <h2 id="goalsTitle">Goals</h2>
-            <div id="progress-bar-container">
-                <div id="progress-bar"></div>
-            </div>
-            <div id="progress-text">Loading goals...</div>
+        <section id="videos">
+            <h2>Watch the Highlights</h2>
+            <!-- Video embeds from CMS will go here -->
         </section>
     </main>
     <footer>
-        <form id="contactForm">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" placeholder="Your Message" required></textarea>
-            <button type="submit" id="contactButton">Contact Us</button>
-        </form>
-        <form id="subscribeForm">
-            <input type="email" id="subscribeEmail" placeholder="Your Email" required>
-            <button type="submit" id="subscribeButton">Subscribe to Updates</button>
-        </form>
+        <p>&copy; 2025 Automotive History Game. All rights reserved.</p>
     </footer>
 </body>
 </html>
