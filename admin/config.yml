@@ -7,6 +7,23 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "key_features"
+    label: "Key Features"
+    folder: "content/key_features"
+    create: true
+    fields:
+      - { name: "title", label: "Feature Title", widget: "string" }
+      - { name: "description", label: "Feature Description", widget: "text" }
+
+  - name: "goals"
+    label: "Goals"
+    folder: "content/goals"
+    create: true
+    fields:
+      - { name: "title", label: "Goal Title", widget: "string" }
+      - { name: "status", label: "Status", widget: "select", options: ["Planned", "In Progress", "Completed"] }
+      - { name: "description", label: "Goal Description", widget: "text" }
+
   - name: "media"
     label: "Media Gallery"
     folder: "content/media"
