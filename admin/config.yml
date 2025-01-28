@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "goals"
+    label: "Goals Page"
+    folder: "content/goals"
+    create: true
+    fields:
+      - { name: "title", label: "Goal Title", widget: "string" }
+      - { name: "status", label: "Status", widget: "select", options: ["Completed", "In Progress", "Planned"] }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "progress", label: "Progress (%)", widget: "number", value_type: "int", min: 0, max: 100 }
