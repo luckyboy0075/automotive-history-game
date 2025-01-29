@@ -63,6 +63,8 @@ nav ul li a:hover, #theme-toggle:hover {
 /* Key Features Section */
 #features {
     margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff; /* Remove gray rectangle effect */
 }
 .feature-tile {
     display: inline-block;
