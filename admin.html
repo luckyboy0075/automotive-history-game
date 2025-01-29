@@ -40,15 +40,16 @@
                 <textarea id="goal-description" placeholder="Enter goal description"></textarea>
 
                 <label for="goal-status">Status:</label>
-                <select id="goal-status" onchange="toggleProgressInput()">
+                <select id="goal-status" onchange="toggleProgressField()">
                     <option value="Future">Future</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Achieved">Achieved</option>
                 </select>
 
+                <!-- Progress Field (Initially Hidden) -->
                 <div id="progress-container" style="display:none;">
                     <label for="goal-progress">Progress (%):</label>
-                    <input type="number" id="goal-progress" min="0" max="100">
+                    <input type="number" id="goal-progress" min="0" max="100" placeholder="Enter progress">
                 </div>
 
                 <label for="goal-image">Upload Goal Image:</label>
@@ -58,6 +59,14 @@
             </div>
 
             <div id="admin-goals" class="goal-list"></div>
+        </div>
+
+        <!-- Popup Notification -->
+        <div id="goal-popup" class="popup">
+            <div class="popup-content">
+                <p>Goal successfully added!</p>
+                <button onclick="closePopup()">OK</button>
+            </div>
         </div>
 
         <!-- Feature Management Section -->
@@ -76,6 +85,77 @@
         </div>
     </div>
 
-    <script src="js/admin.js"></script>
+    <script>
+        function toggleProgressField() {
+            const status = document.getElementById("goal-status").value;
+            const progressContainer = document.getElementById("progress-container");
+            if (status === "In Progress") {
+                progressContainer.style.display = "block";
+            } else {
+                progressContainer.style.display = "none";
+            }
+        }
+
+        function showPopup() {
+            document.getElementById("goal-popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("goal-popup").style.display = "none";
+        }
+
+        function addNewGoal() {
+            const title = document.getElementById("goal-title").value.trim();
+            const description = document.getElementById("goal-description").value.trim();
+            const status = document.getElementById("goal-status").value;
+            const progress = status === "In Progress" ? document.getElementById("goal-progress").value : 0;
+
+            if (!title || !description) {
+                alert("Goal Name and Description are required.");
+                return;
+            }
+
+            fetch("goals.json")
+                .then(response => response.json())
+                .then(goals => {
+                    const newGoal = {
+                        title: title,
+                        description: description,
+                        status: status,
+                        progress: progress,
+                        image: ""
+                    };
+                    goals.push(newGoal);
+                    saveGoals(goals);
+                    showPopup();
+                })
+                .catch(error => console.error("Error adding new goal:", error));
+        }
+    </script>
+
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .popup-content button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
 </body>
 </html>
