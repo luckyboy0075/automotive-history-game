@@ -80,24 +80,24 @@ header {
     text-align: center;
 }
 
-/* Arrange Key Features in Strict Rows of 4 Using Flexbox */
+/* Strict 4-Column Grid for Key Features */
 .feature-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Always 4 per row */
     gap: 20px;
+    justify-items: center;
+    align-items: stretch;
     margin-top: 20px;
 }
 .feature-tile {
-    flex: 1 1 calc(25% - 20px); /* Each tile takes up 25% width, minus gap */
-    max-width: 250px;
-    padding: 15px;
     background: white;
     border-radius: 10px;
+    padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    min-width: 200px;
+    width: 100%;
+    max-width: 300px;
 }
 .feature-tile:hover {
     transform: scale(1.05);
@@ -110,13 +110,13 @@ header {
 
 /* Responsive Layout for Smaller Screens */
 @media (max-width: 1024px) {
-    .feature-tile {
-        flex: 1 1 calc(50% - 20px); /* 2 per row on medium screens */
+    .feature-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
     }
 }
-@media (max-width: 600px) {
-    .feature-tile {
-        flex: 1 1 calc(100% - 20px); /* 1 per row on mobile screens */
+@media (max-width: 768px) {
+    .feature-container {
+        grid-template-columns: repeat(1, 1fr); /* 1 per row on mobile */
     }
 }
 
