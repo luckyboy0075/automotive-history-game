@@ -8,26 +8,74 @@
     <link rel="stylesheet" href="css/social_media.css">
 </head>
 <body>
-    
-<nav id="navbar">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="goals.html">Goals</a></li>
-        <li><a href="subscribe.html">Subscribe</a></li>
-        <li><a href="social_media.html">Social Media</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="goals.html">Goals</a></li>
+            <li><a href="subscribe.html">Subscribe</a></li>
+        </ul>
+    </nav>
 
-    <header>
+    <div class="social-media-container">
         <h1>Follow Us on Social Media</h1>
-    </header>
-    <main>
-        <section id="social-media-links">
-            <p>This page will showcase our social media accounts.</p>
-        </section>
-    </main>
+        <p>Stay updated by following our social media pages.</p>
+
+        <div class="social-links">
+            <a href="#" id="facebook-link" target="_blank">Facebook</a>
+            <a href="#" id="twitter-link" target="_blank">Twitter</a>
+            <a href="#" id="instagram-link" target="_blank">Instagram</a>
+            <a href="#" id="youtube-link" target="_blank">YouTube</a>
+        </div>
+
+        <!-- Embedded Social Media Widgets -->
+        <div class="social-embeds">
+            <div class="social-embed">
+                <h2>Facebook</h2>
+                <iframe id="facebook-widget" src="" width="300" height="400" frameborder="0"></iframe>
+            </div>
+
+            <div class="social-embed">
+                <h2>Twitter</h2>
+                <a class="twitter-timeline" id="twitter-widget" data-width="300" data-height="400" href="">Tweets by OurProject</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+
+            <div class="social-embed">
+                <h2>Instagram</h2>
+                <iframe id="instagram-widget" src="" width="300" height="400" frameborder="0"></iframe>
+            </div>
+
+            <div class="social-embed">
+                <h2>YouTube</h2>
+                <iframe id="youtube-widget" src="" width="300" height="200" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 Automotive History Game. All rights reserved.</p>
+        <p>© 2025 Automotive History Game. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Load Social Media Links from CMS
+        fetch("social_links.json")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("facebook-link").href = data.facebook;
+                document.getElementById("twitter-link").href = data.twitter;
+                document.getElementById("instagram-link").href = data.instagram;
+                document.getElementById("youtube-link").href = data.youtube;
+
+                // Update Embedded Widgets
+                document.getElementById("facebook-widget").src = data.facebookEmbed;
+                document.getElementById("instagram-widget").src = data.instagramEmbed;
+                document.getElementById("youtube-widget").src = data.youtubeEmbed;
+
+                // Update Twitter Widget (Href)
+                document.getElementById("twitter-widget").href = data.twitterEmbed;
+            })
+            .catch(error => console.error("Error loading social media links:", error));
+    </script>
+
 </body>
 </html>
