@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/admin.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+    </header>
+    <main>
+        <section id="manage-key-features">
+            <h2>Manage Key Features</h2>
+            <form id="key-feature-form">
+                <input type="text" id="feature-title" placeholder="Feature Title" required>
+                <textarea id="feature-description" placeholder="Feature Description" required></textarea>
+                <button type="submit">Add Feature</button>
+            </form>
+            <ul id="feature-list"></ul>
+        </section>
+
+        <section id="manage-goals">
+            <h2>Manage Goals</h2>
+            <form id="goal-form">
+                <input type="text" id="goal-title" placeholder="Goal Title" required>
+                <textarea id="goal-description" placeholder="Goal Description" required></textarea>
+                <select id="goal-status">
+                    <option value="planned">Planned</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <button type="submit">Add Goal</button>
+            </form>
+            <ul id="goal-list"></ul>
+        </section>
+
+        <section id="manage-social-media">
+            <h2>Manage Social Media Links</h2>
+            <form id="social-media-form">
+                <input type="text" id="platform-name" placeholder="Platform Name" required>
+                <input type="url" id="platform-link" placeholder="Link to Social Media" required>
+                <button type="submit">Add Social Media</button>
+            </form>
+            <ul id="social-media-list"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Automotive History Game - Admin Panel</p>
+    </footer>
+</body>
+</html>
