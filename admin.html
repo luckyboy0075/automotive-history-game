@@ -97,11 +97,13 @@
         }
 
         function showPopup() {
-            document.getElementById("goal-popup").style.display = "block";
+            const popup = document.getElementById("goal-popup");
+            popup.style.display = "block";
         }
 
         function closePopup() {
-            document.getElementById("goal-popup").style.display = "none";
+            const popup = document.getElementById("goal-popup");
+            popup.style.display = "none";
         }
 
         function addNewGoal() {
@@ -145,6 +147,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             text-align: center;
+            z-index: 1000;
         }
         .popup-content button {
             margin-top: 10px;
