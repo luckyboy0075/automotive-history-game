@@ -1,8 +1,23 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     loadGoals();
+    setupTabs();
 });
 
+// Tab Navigation Logic
+function setupTabs() {
+    const tabs = document.querySelectorAll(".admin-tabs button");
+    const sections = document.querySelectorAll(".admin-section");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            sections.forEach(section => section.classList.remove("active"));
+            document.getElementById(tab.dataset.target).classList.add("active");
+        });
+    });
+}
+
+// Load Goals from JSON
 function loadGoals() {
     fetch("goals.json")
         .then(response => response.json())
@@ -10,6 +25,7 @@ function loadGoals() {
         .catch(error => console.error("Error loading goals:", error));
 }
 
+// Render Goal Management UI
 function renderAdminGoals(goals) {
     const adminContainer = document.getElementById("admin-goals");
     adminContainer.innerHTML = "";
@@ -36,6 +52,7 @@ function renderAdminGoals(goals) {
     });
 }
 
+// Add New Goal to CMS
 function addNewGoal() {
     fetch("goals.json")
         .then(response => response.json())
@@ -51,6 +68,7 @@ function addNewGoal() {
         });
 }
 
+// Update Existing Goal
 function updateGoal(index) {
     fetch("goals.json")
         .then(response => response.json())
@@ -69,6 +87,7 @@ function updateGoal(index) {
         });
 }
 
+// Delete Goal
 function deleteGoal(index) {
     fetch("goals.json")
         .then(response => response.json())
@@ -78,6 +97,7 @@ function deleteGoal(index) {
         });
 }
 
+// Save Goals to JSON File
 function saveGoals(goals) {
     fetch("save_goals.php", {
         method: "POST",
