@@ -105,3 +105,18 @@ function saveGoals(goals) {
         body: JSON.stringify(goals)
     }).then(() => loadGoals());
 }
+
+// Feature Management Placeholder
+function addNewFeature() {
+    alert("Feature management functionality will be added soon.");
+}
+
+// Media Upload Functionality
+function uploadMedia() {
+    const mediaInput = document.getElementById("media-upload");
+    if (mediaInput.files.length > 0) {
+        alert("Media uploaded successfully!");
+    } else {
+        alert("Please select a file to upload.");
+    }
+}

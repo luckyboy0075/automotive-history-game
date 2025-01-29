@@ -22,9 +22,9 @@
 
         <!-- Tabs for Page Management -->
         <div class="admin-tabs">
-            <button onclick="showSection('goals')">Manage Goals</button>
-            <button onclick="showSection('features')">Manage Features</button>
-            <button onclick="showSection('media')">Manage Media</button>
+            <button data-target="goals" onclick="showSection('goals')">Manage Goals</button>
+            <button data-target="features" onclick="showSection('features')">Manage Features</button>
+            <button data-target="media" onclick="showSection('media')">Manage Media</button>
         </div>
 
         <!-- Goal Management Section -->
@@ -34,15 +34,19 @@
             <button onclick="addNewGoal()">Add New Goal</button>
         </div>
 
-        <!-- Other Sections Placeholder -->
+        <!-- Feature Management Section -->
         <div id="features" class="admin-section">
             <h2>Manage Features</h2>
-            <p>Feature management coming soon...</p>
+            <div id="admin-features" class="feature-list"></div>
+            <button onclick="addNewFeature()">Add New Feature</button>
         </div>
 
+        <!-- Media Management Section -->
         <div id="media" class="admin-section">
             <h2>Manage Media</h2>
-            <p>Media upload section coming soon...</p>
+            <input type="file" id="media-upload" accept="image/*,video/*">
+            <button onclick="uploadMedia()">Upload</button>
+            <div id="admin-media" class="media-list"></div>
         </div>
     </div>
 
