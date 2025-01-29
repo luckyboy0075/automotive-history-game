@@ -1,22 +1,21 @@
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
     color: #333;
 }
 header {
-    background: linear-gradient(45deg, #6c63ff, #3f51b5);
-    padding: 20px;
+    background: #222;
     color: white;
+    padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 nav {
     display: flex;
     justify-content: center;
-    background-color: #3f51b5;
+    background-color: #444;
     padding: 10px 0;
 }
 nav ul {
@@ -36,15 +35,11 @@ nav ul li a:hover {
     color: #ffeb3b;
 }
 footer {
-    background: linear-gradient(45deg, #3f51b5, #6c63ff);
+    background-color: #222;
     color: white;
     text-align: center;
     padding: 10px;
     position: fixed;
     width: 100%;
     bottom: 0;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-}
-button, input, select, textarea {
-    font-family: 'Roboto', sans-serif;
 }
