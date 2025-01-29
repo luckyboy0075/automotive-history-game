@@ -50,6 +50,13 @@ nav ul li a:hover, #theme-toggle:hover {
     right: 10px;
 }
 
+/* Fix Header Positioning */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 80px; /* Ensure it starts BELOW the navigation bar */
+}
+
 /* Banner Styling */
 #banner {
     width: 100%;
@@ -64,33 +71,32 @@ nav ul li a:hover, #theme-toggle:hover {
     font-size: 1.8rem;
     font-weight: bold;
     background-color: black;
-    margin-top: 60px; /* Ensure it is BELOW Navigation Bar */
 }
 
 /* Key Features Section */
 #features {
-    margin: 30px auto;
+    margin: 50px auto;
     max-width: 90%;
     text-align: center;
 }
+
+/* Arrange Key Features in a Proper Grid */
 .feature-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
     margin-top: 20px;
 }
 .feature-tile {
-    width: 22%;
-    padding: 15px;
     background: white;
     border-radius: 10px;
+    padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 300px;
 }
 .feature-tile:hover {
     transform: scale(1.05);
@@ -99,17 +105,6 @@ nav ul li a:hover, #theme-toggle:hover {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
-}
-
-@media (max-width: 1024px) {
-    .feature-tile {
-        width: 45%;
-    }
-}
-@media (max-width: 600px) {
-    .feature-tile {
-        width: 90%;
-    }
 }
 
 /* Footer Centering */
