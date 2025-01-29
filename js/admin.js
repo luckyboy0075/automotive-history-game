@@ -62,20 +62,23 @@ function toggleProgressInput(index) {
     progressContainer.style.display = status === "In Progress" ? "block" : "none";
 }
 
-// Add New Goal to CMS
+// Add New Goal to CMS - FIXED
 function addNewGoal() {
     fetch("goals.json")
         .then(response => response.json())
         .then(goals => {
-            goals.push({
+            const newGoal = {
                 title: "New Goal",
                 description: "Goal description",
                 status: "Future",
                 progress: 0,
                 image: ""
-            });
+            };
+            goals.push(newGoal);
             saveGoals(goals);
-        });
+            renderAdminGoals(goals); // Refresh UI Immediately
+        })
+        .catch(error => console.error("Error adding new goal:", error));
 }
 
 // Update Existing Goal
@@ -104,6 +107,7 @@ function deleteGoal(index) {
         .then(goals => {
             goals.splice(index, 1);
             saveGoals(goals);
+            renderAdminGoals(goals); // Refresh UI Immediately
         });
 }
 
