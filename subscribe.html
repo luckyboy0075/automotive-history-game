@@ -5,31 +5,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subscribe for Updates</title>
-    <link rel="stylesheet" href="css/subscribe.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-<nav id="navbar">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="goals.html">Goals</a></li>
-        <li><a href="subscribe.html">Subscribe</a></li>
-        <li><a href="social_media.html">Social Media</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="goals.html">Goals</a></li>
+            <li><a href="social_media.html">Social Media</a></li>
+        </ul>
+    </nav>
 
-    <header>
+    <div class="subscribe-container">
         <h1>Subscribe for Updates</h1>
-    </header>
-    <main>
+        <p>Enter your email below to stay updated with the latest news.</p>
+
         <form id="subscribe-form">
-            <label for="email">Enter your email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" placeholder="Enter your email" required>
             <button type="submit">Subscribe</button>
         </form>
-    </main>
-    <footer>
-        <p>&copy; 2025 Automotive History Game. All rights reserved.</p>
-    </footer>
+
+        <div id="success-message" class="hidden">Thank you for subscribing!</div>
+    </div>
+
+    <script>
+        document.getElementById("subscribe-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            if (!email) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            fetch("save_subscriber.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("success-message").classList.remove("hidden");
+                    document.getElementById("email").value = "";
+                } else {
+                    alert("Error subscribing. Please try again.");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .subscribe-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .hidden {
+            display: none;
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
 </body>
 </html>

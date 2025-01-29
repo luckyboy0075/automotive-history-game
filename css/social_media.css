@@ -1,26 +1,28 @@
 
-/* Social Media Page Styling */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
     text-align: center;
+    background-color: #f4f4f4;
 }
-
-/* Social Media Widgets */
-#social-media-container {
-    max-width: 90%;
-    margin: 20px auto;
+.social-media-container {
+    max-width: 800px;
+    margin: 50px auto;
     padding: 20px;
     background: white;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-.widget {
-    margin: 20px 0;
-    border-radius: 10px;
-    overflow: hidden;
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+.social-links a {
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
 }
