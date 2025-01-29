@@ -95,6 +95,7 @@ function addNewGoal() {
             };
             goals.push(newGoal);
             saveGoals(goals);
+            showPopup();
         })
         .catch(error => console.error("Error adding new goal:", error));
 }
@@ -142,7 +143,7 @@ function updateGoalsPage() {
         .then(response => response.json())
         .then(data => {
             localStorage.setItem("goalsData", JSON.stringify(data)); // Store data for goals.html
-            location.reload(); // Reload goals.html to reflect new changes
+            window.location.href = "goals.html"; // Redirect to goals.html after adding
         })
         .catch(error => console.error("Error updating goals page:", error));
 }
