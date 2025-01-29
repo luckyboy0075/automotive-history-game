@@ -18,16 +18,37 @@
         </div>
     </header>
     <main>
-        <section id="manage-key-features">
-            <h2>Manage Key Features</h2>
-            <form id="key-feature-form">
-                <input type="text" id="feature-title" placeholder="Feature Title" required>
-                <textarea id="feature-description" placeholder="Feature Description" required></textarea>
-                <label for="feature-image">Upload Feature Image (Optional):</label>
-                <input type="file" id="feature-image" accept="image/*">
-                <button type="submit">Add Feature</button>
-            </form>
-            <ul id="feature-list"></ul>
+        <section id="manage-index">
+            <h2>Manage Home Page</h2>
+            <div class="sub-section">
+                <h3>Edit Main Page Text</h3>
+                <form id="main-text-form">
+                    <input type="text" id="main-title" placeholder="Main Title" required>
+                    <textarea id="main-description" placeholder="Main Description" required></textarea>
+                    <button type="submit">Update Main Text</button>
+                </form>
+            </div>
+
+            <div class="sub-section">
+                <h3>Upload Banner</h3>
+                <form id="banner-form">
+                    <label for="banner-upload">Upload Banner Image:</label>
+                    <input type="file" id="banner-upload" accept="image/*">
+                    <button type="submit">Upload Banner</button>
+                </form>
+            </div>
+
+            <div class="sub-section">
+                <h3>Manage Key Features</h3>
+                <form id="key-feature-form">
+                    <input type="text" id="feature-title" placeholder="Feature Title" required>
+                    <textarea id="feature-description" placeholder="Feature Description" required></textarea>
+                    <label for="feature-image">Upload Feature Image (Optional):</label>
+                    <input type="file" id="feature-image" accept="image/*">
+                    <button type="submit" id="feature-submit-button">Add Feature</button>
+                </form>
+                <ul id="feature-list"></ul>
+            </div>
         </section>
     </main>
     <footer>

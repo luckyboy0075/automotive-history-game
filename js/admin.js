@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const featureForm = document.getElementById("key-feature-form");
     const featureList = document.getElementById("feature-list");
+    const featureSubmitButton = document.getElementById("feature-submit-button");
     let editIndex = null;
 
     featureForm.addEventListener("submit", (event) => {
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             saveFeature(title, description, "");
         }
         featureForm.reset();
+        featureSubmitButton.textContent = "Add Feature";
     });
 
     function saveFeature(title, description, imageUrl) {
@@ -62,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("feature-description").value = feature.description;
 
         editIndex = index;
+        featureSubmitButton.textContent = "Update Key Feature";
     };
 
     window.deleteFeature = (index) => {
