@@ -10,17 +10,6 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    
-<nav id="navbar">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="goals.html">Goals</a></li>
-        <li><a href="subscribe.html">Subscribe</a></li>
-        <li><a href="social_media.html">Social Media</a></li>
-        <li><a href="admin.html">Admin</a></li>
-    </ul>
-</nav>
-  <!-- Injecting the fixed navigation bar -->
     <header>
         <h1>Admin Panel</h1>
         <div id="netlify-login">
@@ -29,6 +18,15 @@
         </div>
     </header>
     <main>
+        <section id="manage-main-text">
+            <h2>Manage Main Page Text</h2>
+            <form id="main-text-form">
+                <input type="text" id="main-title" placeholder="Main Title" required>
+                <textarea id="main-description" placeholder="Main Description" required></textarea>
+                <button type="submit">Update Text</button>
+            </form>
+        </section>
+
         <section id="manage-key-features">
             <h2>Manage Key Features</h2>
             <form id="key-feature-form">
@@ -37,31 +35,6 @@
                 <button type="submit">Add Feature</button>
             </form>
             <ul id="feature-list"></ul>
-        </section>
-
-        <section id="manage-goals">
-            <h2>Manage Goals</h2>
-            <form id="goal-form">
-                <input type="text" id="goal-title" placeholder="Goal Title" required>
-                <textarea id="goal-description" placeholder="Goal Description" required></textarea>
-                <select id="goal-status">
-                    <option value="planned">Planned</option>
-                    <option value="in-progress">In Progress</option>
-                    <option value="completed">Completed</option>
-                </select>
-                <button type="submit">Add Goal</button>
-            </form>
-            <ul id="goal-list"></ul>
-        </section>
-
-        <section id="manage-social-media">
-            <h2>Manage Social Media Links</h2>
-            <form id="social-media-form">
-                <input type="text" id="platform-name" placeholder="Platform Name" required>
-                <input type="url" id="platform-link" placeholder="Link to Social Media" required>
-                <button type="submit">Add Social Media</button>
-            </form>
-            <ul id="social-media-list"></ul>
         </section>
     </main>
     <footer>

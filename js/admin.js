@@ -1,41 +1,28 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-            if (!user) {
-                document.getElementById("login-btn").style.display = "block";
-                document.getElementById("logout-btn").style.display = "none";
-            } else {
-                checkAdminAccess(user);
-            }
-        });
+    const featureForm = document.getElementById("key-feature-form");
+    const mainTextForm = document.getElementById("main-text-form");
 
-        document.getElementById("login-btn").addEventListener("click", () => {
-            window.netlifyIdentity.open();
-        });
+    featureForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const title = document.getElementById("feature-title").value;
+        const description = document.getElementById("feature-description").value;
+        saveData("features", { title, description });
+        featureForm.reset();
+    });
 
-        document.getElementById("logout-btn").addEventListener("click", () => {
-            window.netlifyIdentity.logout();
-            document.location.href = "/index.html";
-        });
+    mainTextForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const title = document.getElementById("main-title").value;
+        const description = document.getElementById("main-description").value;
+        localStorage.setItem("mainText", JSON.stringify({ title, description }));
+        alert("Main page text updated!");
+    });
 
-        window.netlifyIdentity.on("login", (user) => {
-            checkAdminAccess(user);
-        });
-
-        window.netlifyIdentity.on("logout", () => {
-            document.location.href = "/index.html";
-        });
+    function saveData(type, data) {
+        const storedData = JSON.parse(localStorage.getItem(type)) || [];
+        storedData.push(data);
+        localStorage.setItem(type, JSON.stringify(storedData));
+        alert("Data saved successfully!");
     }
 });
-
-function checkAdminAccess(user) {
-    const roles = user.app_metadata && user.app_metadata.roles ? user.app_metadata.roles : [];
-    if (roles.includes("admin")) {
-        document.getElementById("login-btn").style.display = "none";
-        document.getElementById("logout-btn").style.display = "block";
-    } else {
-        alert("Access Denied: Admins Only");
-        window.location.href = "index.html";
-    }
-}
