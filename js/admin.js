@@ -73,19 +73,28 @@ function toggleProgressInput(index) {
 
 // Add New Goal to CMS - FIXED
 function addNewGoal() {
+    const title = document.getElementById("goal-title").value.trim();
+    const description = document.getElementById("goal-description").value.trim();
+    const status = document.getElementById("goal-status").value;
+    const progress = status === "In Progress" ? document.getElementById("goal-progress").value : 0;
+
+    if (!title || !description) {
+        alert("Goal Name and Description are required.");
+        return;
+    }
+
     fetch("goals.json")
         .then(response => response.json())
         .then(goals => {
             const newGoal = {
-                title: document.getElementById("goal-title").value,
-                description: document.getElementById("goal-description").value,
-                status: document.getElementById("goal-status").value,
-                progress: document.getElementById("goal-status").value === "In Progress" ? document.getElementById("goal-progress").value : 0,
+                title: title,
+                description: description,
+                status: status,
+                progress: progress,
                 image: ""
             };
             goals.push(newGoal);
             saveGoals(goals);
-            renderAdminGoals(goals); // Refresh UI Immediately
         })
         .catch(error => console.error("Error adding new goal:", error));
 }
@@ -101,10 +110,6 @@ function updateGoal(index) {
             if (goals[index].status === "In Progress") {
                 goals[index].progress = document.getElementById(`progress-${index}`).value;
             }
-            const imageInput = document.getElementById(`image-${index}`);
-            if (imageInput.files.length > 0) {
-                goals[index].image = URL.createObjectURL(imageInput.files[0]);
-            }
             saveGoals(goals);
         });
 }
@@ -116,11 +121,10 @@ function deleteGoal(index) {
         .then(goals => {
             goals.splice(index, 1);
             saveGoals(goals);
-            renderAdminGoals(goals); // Refresh UI Immediately
         });
 }
 
-// Save Goals to JSON File
+// Save Goals to JSON File and Update Goals Page
 function saveGoals(goals) {
     fetch("save_goals.php", {
         method: "POST",
@@ -138,21 +142,7 @@ function updateGoalsPage() {
         .then(response => response.json())
         .then(data => {
             localStorage.setItem("goalsData", JSON.stringify(data)); // Store data for goals.html
+            location.reload(); // Reload goals.html to reflect new changes
         })
         .catch(error => console.error("Error updating goals page:", error));
-}
-
-// Feature Management Placeholder
-function addNewFeature() {
-    alert("Feature management functionality will be added soon.");
-}
-
-// Media Upload Functionality
-function uploadMedia() {
-    const mediaInput = document.getElementById("media-upload");
-    if (mediaInput.files.length > 0) {
-        alert("Media uploaded successfully!");
-    } else {
-        alert("Please select a file to upload.");
-    }
 }
