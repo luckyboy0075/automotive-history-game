@@ -35,18 +35,27 @@ function renderAdminGoals(goals) {
         goalElement.classList.add("goal-item");
 
         goalElement.innerHTML = `
-            <input type="text" value="${goal.title}" id="title-${index}">
-            <textarea id="description-${index}">${goal.description}</textarea>
+            <label>Goal Name:</label>
+            <input type="text" value="${goal.title}" id="title-${index}" placeholder="Enter goal name">
+
+            <label>Goal Description:</label>
+            <textarea id="description-${index}" placeholder="Enter goal description">${goal.description}</textarea>
+
+            <label>Status:</label>
             <select id="status-${index}" onchange="toggleProgressInput(${index})">
                 <option value="Future" ${goal.status === "Future" ? "selected" : ""}>Future</option>
                 <option value="In Progress" ${goal.status === "In Progress" ? "selected" : ""}>In Progress</option>
                 <option value="Achieved" ${goal.status === "Achieved" ? "selected" : ""}>Achieved</option>
             </select>
+
             <div id="progress-container-${index}" ${goal.status === "In Progress" ? "" : 'style="display:none;"'}>
-                <label for="progress-${index}">Progress:</label>
+                <label>Progress (%):</label>
                 <input type="number" value="${goal.progress || 0}" id="progress-${index}" min="0" max="100">
             </div>
+
+            <label>Goal Image:</label>
             <input type="file" id="image-${index}" accept="image/*">
+
             <button onclick="updateGoal(${index})">Save</button>
             <button onclick="deleteGoal(${index})">Delete</button>
         `;
@@ -62,14 +71,14 @@ function toggleProgressInput(index) {
     progressContainer.style.display = status === "In Progress" ? "block" : "none";
 }
 
-// Add New Goal to CMS - FIXED
+// Add New Goal to CMS
 function addNewGoal() {
     fetch("goals.json")
         .then(response => response.json())
         .then(goals => {
             const newGoal = {
-                title: "New Goal",
-                description: "Goal description",
+                title: "",
+                description: "",
                 status: "Future",
                 progress: 0,
                 image: ""
