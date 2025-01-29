@@ -30,8 +30,34 @@
         <!-- Goal Management Section -->
         <div id="goals" class="admin-section active">
             <h2>Manage Goals</h2>
+
+            <!-- Input Fields for Adding a New Goal -->
+            <div class="goal-form">
+                <label for="goal-title">Goal Name:</label>
+                <input type="text" id="goal-title" placeholder="Enter goal name">
+
+                <label for="goal-description">Goal Description:</label>
+                <textarea id="goal-description" placeholder="Enter goal description"></textarea>
+
+                <label for="goal-status">Status:</label>
+                <select id="goal-status" onchange="toggleProgressInput()">
+                    <option value="Future">Future</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Achieved">Achieved</option>
+                </select>
+
+                <div id="progress-container" style="display:none;">
+                    <label for="goal-progress">Progress (%):</label>
+                    <input type="number" id="goal-progress" min="0" max="100">
+                </div>
+
+                <label for="goal-image">Upload Goal Image:</label>
+                <input type="file" id="goal-image" accept="image/*">
+
+                <button onclick="addNewGoal()">Add Goal</button>
+            </div>
+
             <div id="admin-goals" class="goal-list"></div>
-            <button onclick="addNewGoal()">Add New Goal</button>
         </div>
 
         <!-- Feature Management Section -->
