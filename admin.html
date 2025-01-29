@@ -18,6 +18,15 @@
         </div>
     </header>
     <main>
+        <section id="manage-banner">
+            <h2>Manage Home Page Banner</h2>
+            <form id="banner-form">
+                <label for="banner-upload">Upload Banner Image:</label>
+                <input type="file" id="banner-upload" accept="image/*">
+                <button type="submit">Upload Banner</button>
+            </form>
+        </section>
+
         <section id="manage-main-text">
             <h2>Manage Main Page Text</h2>
             <form id="main-text-form">
@@ -32,6 +41,8 @@
             <form id="key-feature-form">
                 <input type="text" id="feature-title" placeholder="Feature Title" required>
                 <textarea id="feature-description" placeholder="Feature Description" required></textarea>
+                <label for="feature-image">Upload Feature Image (Optional):</label>
+                <input type="file" id="feature-image" accept="image/*">
                 <button type="submit">Add Feature</button>
             </form>
             <ul id="feature-list"></ul>

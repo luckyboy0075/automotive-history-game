@@ -1,28 +1,34 @@
 
 document.addEventListener("DOMContentLoaded", () => {
+    function loadBanner() {
+        const banner = document.getElementById("banner");
+        const bannerData = JSON.parse(localStorage.getItem("banner")) || { imageUrl: "" };
+        if (bannerData.imageUrl) {
+            banner.style.backgroundImage = `url('${bannerData.imageUrl}')`;
+        } else {
+            banner.style.backgroundColor = "#333";
+        }
+    }
+
     function loadFeatures() {
         const featureList = document.getElementById("feature-list");
         featureList.innerHTML = "";
         const features = JSON.parse(localStorage.getItem("features")) || [
-            { title: "Realistic Racing", description: "Experience high-fidelity vehicle simulation." },
-            { title: "Historical Storytelling", description: "Relive automotive history through quests." },
+            { title: "Realistic Racing", description: "Experience high-fidelity vehicle simulation.", imageUrl: "" },
+            { title: "Historical Storytelling", description: "Relive automotive history through quests.", imageUrl: "" },
         ];
         features.forEach(feature => {
-            const li = document.createElement("li");
-            li.innerHTML = `<strong>${feature.title}</strong>: ${feature.description}`;
-            featureList.appendChild(li);
+            const featureTile = document.createElement("div");
+            featureTile.classList.add("feature-tile");
+            featureTile.innerHTML = `
+                ${feature.imageUrl ? `<img src="${feature.imageUrl}" alt="${feature.title}">` : ''}
+                <h3>${feature.title}</h3>
+                <p>${feature.description}</p>
+            `;
+            featureList.appendChild(featureTile);
         });
     }
 
-    function loadMainText() {
-        const banner = document.getElementById("banner");
-        const mainText = JSON.parse(localStorage.getItem("mainText")) || {
-            title: "The Future of Automotive History",
-            description: "Discover the untold stories behind the evolution of the automotive industry."
-        };
-        banner.innerHTML = `<h2>${mainText.title}</h2><p>${mainText.description}</p>`;
-    }
-
+    loadBanner();
     loadFeatures();
-    loadMainText();
 });
