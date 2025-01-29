@@ -7,10 +7,15 @@
     <title>Admin Panel</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/admin.js" defer></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
     <header>
         <h1>Admin Panel</h1>
+        <div id="netlify-login">
+            <button id="login-btn">Login</button>
+            <button id="logout-btn" style="display: none;">Logout</button>
+        </div>
     </header>
     <main>
         <section id="manage-key-features">
@@ -51,5 +56,24 @@
     <footer>
         <p>&copy; 2025 Automotive History Game - Admin Panel</p>
     </footer>
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", (user) => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin.html";
+                    });
+                } else {
+                    document.getElementById("login-btn").style.display = "none";
+                    document.getElementById("logout-btn").style.display = "block";
+                }
+            });
+        }
+
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            window.netlifyIdentity.logout();
+            document.location.href = "/index.html";
+        });
+    </script>
 </body>
 </html>
