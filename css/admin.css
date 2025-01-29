@@ -47,6 +47,25 @@ nav ul li a:hover {
     text-align: center;
 }
 
+/* Tab Navigation for Different Pages */
+.admin-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.admin-tabs button {
+    padding: 10px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.admin-tabs button:hover {
+    background: #0056b3;
+}
+
 /* Goal Management Section */
 .goal-management {
     display: flex;
