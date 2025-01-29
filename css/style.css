@@ -1,4 +1,51 @@
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+}
+header {
+    background: #ffffff;
+    color: black;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #444;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a, #theme-toggle {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+nav ul li a:hover, #theme-toggle:hover {
+    color: #ffeb3b;
+}
 .feature-tile {
     display: inline-block;
     width: 22%;
@@ -30,5 +77,6 @@
     height: 300px;
     background-size: cover;
     background-position: center;
-    margin-top: 60px; /* To ensure navbar does not overlap */
+    margin-top: 70px;
+    position: fixed;
 }
