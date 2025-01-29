@@ -64,7 +64,7 @@ nav ul li a:hover, #theme-toggle:hover {
     font-size: 1.8rem;
     font-weight: bold;
     background-color: black;
-    margin-top: 60px;
+    margin-top: 60px; /* Ensure it is BELOW Navigation Bar */
 }
 
 /* Key Features Section */
@@ -88,6 +88,9 @@ nav ul li a:hover, #theme-toggle:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .feature-tile:hover {
     transform: scale(1.05);
@@ -107,4 +110,14 @@ nav ul li a:hover, #theme-toggle:hover {
     .feature-tile {
         width: 90%;
     }
+}
+
+/* Footer Centering */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #222;
+    color: white;
+    position: relative;
+    margin-top: 40px;
 }
