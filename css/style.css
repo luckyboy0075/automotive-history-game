@@ -15,7 +15,7 @@ body {
 header {
     background: #ffffff;
     color: black;
-    padding: 20px;
+    padding: 60px 20px 20px; /* Increased top padding to avoid overlap with navbar */
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -26,6 +26,7 @@ nav {
     background-color: #444;
     padding: 10px 0;
     text-align: center;
+    z-index: 1000; /* Ensures nav is always on top but does not overlap content */
 }
 nav ul {
     list-style: none;
