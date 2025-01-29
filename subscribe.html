@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subscribe for Updates</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/subscribe.css">
 </head>
 <body>
     <nav>
@@ -13,6 +13,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="goals.html">Goals</a></li>
             <li><a href="social_media.html">Social Media</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
         </ul>
     </nav>
 
@@ -28,57 +29,9 @@
         <div id="success-message" class="hidden">Thank you for subscribing!</div>
     </div>
 
-    <script>
-        document.getElementById("subscribe-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const email = document.getElementById("email").value.trim();
-            if (!email) {
-                alert("Please enter a valid email address.");
-                return;
-            }
+    <footer>
+        <p>© 2025 Automotive History Game. All rights reserved.</p>
+    </footer>
 
-            fetch("save_subscriber.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: email })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById("success-message").classList.remove("hidden");
-                    document.getElementById("email").value = "";
-                } else {
-                    alert("Error subscribing. Please try again.");
-                }
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    </script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-        .subscribe-container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        input, button {
-            width: 80%;
-            padding: 10px;
-            margin-top: 10px;
-        }
-        .hidden {
-            display: none;
-            color: green;
-            margin-top: 10px;
-        }
-    </style>
 </body>
 </html>

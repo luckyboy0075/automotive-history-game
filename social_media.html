@@ -13,6 +13,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="goals.html">Goals</a></li>
             <li><a href="subscribe.html">Subscribe</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
         </ul>
     </nav>
 
@@ -26,56 +27,11 @@
             <a href="#" id="instagram-link" target="_blank">Instagram</a>
             <a href="#" id="youtube-link" target="_blank">YouTube</a>
         </div>
-
-        <!-- Embedded Social Media Widgets -->
-        <div class="social-embeds">
-            <div class="social-embed">
-                <h2>Facebook</h2>
-                <iframe id="facebook-widget" src="" width="300" height="400" frameborder="0"></iframe>
-            </div>
-
-            <div class="social-embed">
-                <h2>Twitter</h2>
-                <a class="twitter-timeline" id="twitter-widget" data-width="300" data-height="400" href="">Tweets by OurProject</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-
-            <div class="social-embed">
-                <h2>Instagram</h2>
-                <iframe id="instagram-widget" src="" width="300" height="400" frameborder="0"></iframe>
-            </div>
-
-            <div class="social-embed">
-                <h2>YouTube</h2>
-                <iframe id="youtube-widget" src="" width="300" height="200" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
     </div>
 
     <footer>
         <p>© 2025 Automotive History Game. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Load Social Media Links from CMS
-        fetch("social_links.json")
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("facebook-link").href = data.facebook;
-                document.getElementById("twitter-link").href = data.twitter;
-                document.getElementById("instagram-link").href = data.instagram;
-                document.getElementById("youtube-link").href = data.youtube;
-
-                // Update Embedded Widgets
-                document.getElementById("facebook-widget").src = data.facebookEmbed;
-                document.getElementById("instagram-widget").src = data.instagramEmbed;
-                document.getElementById("youtube-widget").src = data.youtubeEmbed;
-
-                // Update Twitter Widget (Href)
-                document.getElementById("twitter-widget").href = data.twitterEmbed;
-            })
-            .catch(error => console.error("Error loading social media links:", error));
-    </script>
 
 </body>
 </html>
