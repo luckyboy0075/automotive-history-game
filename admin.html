@@ -56,24 +56,5 @@
     <footer>
         <p>&copy; 2025 Automotive History Game - Admin Panel</p>
     </footer>
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", (user) => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin.html";
-                    });
-                } else {
-                    document.getElementById("login-btn").style.display = "none";
-                    document.getElementById("logout-btn").style.display = "block";
-                }
-            });
-        }
-
-        document.getElementById("logout-btn").addEventListener("click", () => {
-            window.netlifyIdentity.logout();
-            document.location.href = "/index.html";
-        });
-    </script>
 </body>
 </html>
