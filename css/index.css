@@ -80,23 +80,24 @@ header {
     text-align: center;
 }
 
-/* Arrange Key Features in Rows of 4 */
+/* Arrange Key Features in Strict Rows of 4 Using Flexbox */
 .feature-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Enforce 4 columns per row */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
-    justify-items: center;
     margin-top: 20px;
 }
 .feature-tile {
+    flex: 1 1 calc(25% - 20px); /* Each tile takes up 25% width, minus gap */
+    max-width: 250px;
+    padding: 15px;
     background: white;
     border-radius: 10px;
-    padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    width: 100%;
-    max-width: 250px;
+    min-width: 200px;
 }
 .feature-tile:hover {
     transform: scale(1.05);
@@ -109,13 +110,13 @@ header {
 
 /* Responsive Layout for Smaller Screens */
 @media (max-width: 1024px) {
-    .feature-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 per row on medium screens */
+    .feature-tile {
+        flex: 1 1 calc(50% - 20px); /* 2 per row on medium screens */
     }
 }
 @media (max-width: 600px) {
-    .feature-container {
-        grid-template-columns: repeat(1, 1fr); /* 1 per row on mobile screens */
+    .feature-tile {
+        flex: 1 1 calc(100% - 20px); /* 1 per row on mobile screens */
     }
 }
 
