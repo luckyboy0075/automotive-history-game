@@ -27,12 +27,28 @@ function renderAdminGoals(goals) {
                 <option value="Achieved" ${goal.status === "Achieved" ? "selected" : ""}>Achieved</option>
             </select>
             ${goal.status === "In Progress" ? `<input type="number" value="${goal.progress}" id="progress-${index}" min="0" max="100">` : ""}
+            <input type="file" id="image-${index}" accept="image/*">
             <button onclick="updateGoal(${index})">Save</button>
             <button onclick="deleteGoal(${index})">Delete</button>
         `;
 
         adminContainer.appendChild(goalElement);
     });
+}
+
+function addNewGoal() {
+    fetch("goals.json")
+        .then(response => response.json())
+        .then(goals => {
+            goals.push({
+                title: "New Goal",
+                description: "Goal description",
+                status: "Future",
+                progress: 0,
+                image: ""
+            });
+            saveGoals(goals);
+        });
 }
 
 function updateGoal(index) {
@@ -45,7 +61,10 @@ function updateGoal(index) {
             if (goals[index].status === "In Progress") {
                 goals[index].progress = document.getElementById(`progress-${index}`).value;
             }
-
+            const imageInput = document.getElementById(`image-${index}`);
+            if (imageInput.files.length > 0) {
+                goals[index].image = URL.createObjectURL(imageInput.files[0]);
+            }
             saveGoals(goals);
         });
 }

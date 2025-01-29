@@ -25,6 +25,10 @@ function renderGoals(goals) {
             ${goal.status === "In Progress" ? `<div class="progress-bar-container"><div class="progress-bar" style="width: ${goal.progress}%;"></div></div>` : `<p>Status: ${goal.status}</p>`}
         `;
 
+        if (goal.image) {
+            goalElement.innerHTML += `<img src="${goal.image}" alt="${goal.title}">`;
+        }
+
         if (goal.status === "Future") {
             futureContainer.appendChild(goalElement);
         } else if (goal.status === "In Progress") {
