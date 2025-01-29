@@ -1,0 +1,26 @@
+
+/* Social Media Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+}
+
+/* Social Media Widgets */
+#social-media-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.widget {
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
