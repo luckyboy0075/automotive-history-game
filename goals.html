@@ -4,31 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Goals</title>
+    <title>Goals - Automotive History Game</title>
     <link rel="stylesheet" href="css/goals.css">
 </head>
 <body>
-    
-<nav id="navbar">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="goals.html">Goals</a></li>
-        <li><a href="subscribe.html">Subscribe</a></li>
-        <li><a href="social_media.html">Social Media</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="goals.html">Goals</a></li>
+            <li><a href="subscribe.html">Subscribe</a></li>
+            <li><a href="social_media.html">Social Media</a></li>
+        </ul>
+    </nav>
 
-    <header>
-        <h1>Our Goals</h1>
+    <header class="header">
+        <h1>Project Goals</h1>
     </header>
-    <main>
-        <section id="goals">
-            <h2>Goals Overview</h2>
-            <p>This page will showcase our completed, ongoing, and future goals.</p>
+
+    <div class="container">
+        <section class="goal-section">
+            <h2>Future Goals</h2>
+            <div id="future-goals" class="goal-container"></div>
         </section>
-    </main>
+
+        <section class="goal-section">
+            <h2>In Progress Goals</h2>
+            <div id="in-progress-goals" class="goal-container"></div>
+        </section>
+
+        <section class="goal-section">
+            <h2>Achieved Goals</h2>
+            <div id="achieved-goals" class="goal-container"></div>
+        </section>
+    </div>
+
     <footer>
-        <p>&copy; 2025 Automotive History Game. All rights reserved.</p>
+        <p>© 2025 Automotive History Game. All rights reserved.</p>
     </footer>
+
+    <script src="js/goals.js"></script>
 </body>
 </html>

@@ -4,55 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Admin Panel - Automotive History Game</title>
     <link rel="stylesheet" href="css/admin.css">
-    <script src="js/admin.js" defer></script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="goals.html">Goals</a></li>
+            <li><a href="subscribe.html">Subscribe</a></li>
+            <li><a href="social_media.html">Social Media</a></li>
+        </ul>
+    </nav>
+
+    <div class="admin-container">
         <h1>Admin Panel</h1>
-        <div id="netlify-login">
-            <button id="login-btn">Login</button>
-            <button id="logout-btn" style="display: none;">Logout</button>
+
+        <!-- Tabs for Page Management -->
+        <div class="admin-tabs">
+            <button onclick="showSection('goals')">Manage Goals</button>
+            <button onclick="showSection('features')">Manage Features</button>
+            <button onclick="showSection('media')">Manage Media</button>
         </div>
-    </header>
-    <main>
-        <section id="manage-index">
-            <h2>Manage Home Page</h2>
-            <div class="sub-section">
-                <h3>Edit Main Page Text</h3>
-                <form id="main-text-form">
-                    <input type="text" id="main-title" placeholder="Main Title" required>
-                    <textarea id="main-description" placeholder="Main Description" required></textarea>
-                    <button type="submit">Update Main Text</button>
-                </form>
-            </div>
 
-            <div class="sub-section">
-                <h3>Upload Banner</h3>
-                <form id="banner-form">
-                    <label for="banner-upload">Upload Banner Image:</label>
-                    <input type="file" id="banner-upload" accept="image/*">
-                    <button type="submit">Upload Banner</button>
-                </form>
-            </div>
+        <!-- Goal Management Section -->
+        <div id="goals" class="admin-section active">
+            <h2>Manage Goals</h2>
+            <div id="admin-goals" class="goal-list"></div>
+            <button onclick="addNewGoal()">Add New Goal</button>
+        </div>
 
-            <div class="sub-section">
-                <h3>Manage Key Features</h3>
-                <form id="key-feature-form">
-                    <input type="text" id="feature-title" placeholder="Feature Title" required>
-                    <textarea id="feature-description" placeholder="Feature Description" required></textarea>
-                    <label for="feature-image">Upload Feature Image (Optional):</label>
-                    <input type="file" id="feature-image" accept="image/*">
-                    <button type="submit" id="feature-submit-button">Add Feature</button>
-                </form>
-                <ul id="feature-list"></ul>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Automotive History Game - Admin Panel</p>
-    </footer>
+        <!-- Other Sections Placeholder -->
+        <div id="features" class="admin-section">
+            <h2>Manage Features</h2>
+            <p>Feature management coming soon...</p>
+        </div>
+
+        <div id="media" class="admin-section">
+            <h2>Manage Media</h2>
+            <p>Media upload section coming soon...</p>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
 </body>
 </html>
