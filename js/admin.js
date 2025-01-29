@@ -71,16 +71,16 @@ function toggleProgressInput(index) {
     progressContainer.style.display = status === "In Progress" ? "block" : "none";
 }
 
-// Add New Goal to CMS
+// Add New Goal to CMS - FIXED
 function addNewGoal() {
     fetch("goals.json")
         .then(response => response.json())
         .then(goals => {
             const newGoal = {
-                title: "",
-                description: "",
-                status: "Future",
-                progress: 0,
+                title: document.getElementById("goal-title").value,
+                description: document.getElementById("goal-description").value,
+                status: document.getElementById("goal-status").value,
+                progress: document.getElementById("goal-status").value === "In Progress" ? document.getElementById("goal-progress").value : 0,
                 image: ""
             };
             goals.push(newGoal);
@@ -126,7 +126,20 @@ function saveGoals(goals) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(goals)
-    }).then(() => loadGoals());
+    }).then(() => {
+        loadGoals();
+        updateGoalsPage(); // Ensure new goal is reflected on goals.html
+    });
+}
+
+// Function to Update `goals.html` After Adding a New Goal
+function updateGoalsPage() {
+    fetch("goals.json")
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem("goalsData", JSON.stringify(data)); // Store data for goals.html
+        })
+        .catch(error => console.error("Error updating goals page:", error));
 }
 
 // Feature Management Placeholder
