@@ -80,15 +80,15 @@ header {
     text-align: center;
 }
 
-/* Arrange Key Features in a Centered 4-Column Grid */
+/* Strict 4-Column Flexbox Layout for Key Features */
 .feature-container {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 1fr)); /* 4 per row on PC */
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: stretch;
+    gap: 20px;
     margin-top: 20px;
 }
+
 .feature-tile {
     background: white;
     border-radius: 10px;
@@ -96,11 +96,9 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    width: 100%;
+    width: 22%; /* 4 per row on PC */
+    min-width: 200px;
     max-width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 .feature-tile:hover {
     transform: scale(1.05);
@@ -113,13 +111,13 @@ header {
 
 /* Responsive Layout for Smaller Screens */
 @media (max-width: 1024px) {
-    .feature-container {
-        grid-template-columns: repeat(2, minmax(200px, 1fr)); /* 2 per row on tablets */
+    .feature-tile {
+        width: 45%; /* 2 per row on tablets */
     }
 }
 @media (max-width: 768px) {
-    .feature-container {
-        grid-template-columns: repeat(1, minmax(200px, 1fr)); /* 1 per row on mobile */
+    .feature-tile {
+        width: 90%; /* 1 per row on mobile */
     }
 }
 
