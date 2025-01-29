@@ -1,32 +1,5 @@
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-nav {
-    background: #222;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
+@import url('global.css');
 
 .subscribe-container {
     max-width: 600px;
@@ -38,22 +11,11 @@ nav ul li a {
     text-align: center;
 }
 
-h1 {
-    color: #222;
-}
-
 input, button {
     width: 80%;
     padding: 10px;
     margin-top: 10px;
     border-radius: 5px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
 }
 
 button:hover {
@@ -64,14 +26,4 @@ button:hover {
     display: none;
     color: green;
     margin-top: 10px;
-}
-
-footer {
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
