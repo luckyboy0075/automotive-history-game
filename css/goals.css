@@ -1,68 +1,15 @@
 
-/* General Styling for Goals Page */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-/* Navigation Bar */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #444;
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-}
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-nav ul li {
-    display: inline;
-}
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 10px 15px;
-}
-nav ul li a:hover {
-    color: #ffeb3b;
-}
-
-/* Goals Page Structure */
-.container {
-    max-width: 80%;
-    margin: 120px auto 50px auto; /* Ensure space below navigation bar */
-    text-align: center;
-}
-
-/* Goal Sections */
-.goal-section {
-    margin-bottom: 50px;
-}
-.goal-section h2 {
-    border-bottom: 2px solid #444;
-    padding-bottom: 10px;
-}
-
-/* Goal Tiles Layout */
+/* Ensure Goals are Displayed as Tiles */
 .goal-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: stretch;
     gap: 20px;
     margin-top: 20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .goal-tile {
@@ -72,53 +19,9 @@ nav ul li a:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    width: 22%;
-    min-width: 250px;
+    flex: 1 1 calc(33% - 20px); /* Ensure 3 per row with spacing */
     max-width: 300px;
 }
 .goal-tile:hover {
     transform: scale(1.05);
-}
-.goal-tile h3 {
-    margin: 10px 0;
-    font-size: 1.2rem;
-}
-.goal-tile p {
-    font-size: 1rem;
-    color: #666;
-}
-
-/* Progress Bar for 'In Progress' Goals */
-.progress-bar-container {
-    width: 100%;
-    background: #ddd;
-    border-radius: 10px;
-    margin-top: 10px;
-    height: 15px;
-    overflow: hidden;
-}
-.progress-bar {
-    height: 100%;
-    background: #4CAF50;
-    width: 0%; /* Will be dynamically updated via CMS */
-    transition: width 0.5s ease-in-out;
-}
-
-/* Achieved Goals */
-.achieved .goal-tile {
-    border-left: 5px solid green;
-}
-.future .goal-tile {
-    opacity: 0.6;
-}
-
-/* Footer Centering */
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #222;
-    color: white;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }

@@ -1,78 +1,68 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-    const featureForm = document.getElementById("key-feature-form");
-    const featureList = document.getElementById("feature-list");
-    const featureSubmitButton = document.getElementById("feature-submit-button");
-    let editIndex = null;
-
-    featureForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const title = document.getElementById("feature-title").value;
-        const description = document.getElementById("feature-description").value;
-        const featureImage = document.getElementById("feature-image").files[0];
-
-        if (!title || !description) {
-            alert("Title and description are required!");
-            return;
-        }
-
-        if (featureImage) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                saveFeature(title, description, e.target.result);
-            };
-            reader.readAsDataURL(featureImage);
-        } else {
-            saveFeature(title, description, "");
-        }
-        featureForm.reset();
-        featureSubmitButton.textContent = "Add Feature";
-    });
-
-    function saveFeature(title, description, imageUrl) {
-        let storedFeatures = JSON.parse(localStorage.getItem("features")) || [];
-        if (editIndex !== null) {
-            storedFeatures[editIndex] = { title, description, imageUrl };
-            editIndex = null;
-        } else {
-            storedFeatures.push({ title, description, imageUrl });
-        }
-        localStorage.setItem("features", JSON.stringify(storedFeatures));
-        loadFeatures();
-    }
-
-    function loadFeatures() {
-        featureList.innerHTML = "";
-        const features = JSON.parse(localStorage.getItem("features")) || [];
-        features.forEach((feature, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <strong>${feature.title}</strong>: ${feature.description}
-                ${feature.imageUrl ? `<img src="${feature.imageUrl}" alt="${feature.title}" style="width:50px; height:auto;">` : ''}
-                <button onclick="editFeature(${index})">Edit</button>
-                <button onclick="deleteFeature(${index})">Delete</button>
-            `;
-            featureList.appendChild(li);
-        });
-    }
-
-    window.editFeature = (index) => {
-        const features = JSON.parse(localStorage.getItem("features")) || [];
-        const feature = features[index];
-
-        document.getElementById("feature-title").value = feature.title;
-        document.getElementById("feature-description").value = feature.description;
-
-        editIndex = index;
-        featureSubmitButton.textContent = "Update Key Feature";
-    };
-
-    window.deleteFeature = (index) => {
-        let features = JSON.parse(localStorage.getItem("features")) || [];
-        features.splice(index, 1);
-        localStorage.setItem("features", JSON.stringify(features));
-        loadFeatures();
-    };
-
-    loadFeatures();
+document.addEventListener("DOMContentLoaded", function () {
+    loadGoals();
 });
+
+function loadGoals() {
+    fetch("goals.json")
+        .then(response => response.json())
+        .then(data => renderAdminGoals(data))
+        .catch(error => console.error("Error loading goals:", error));
+}
+
+function renderAdminGoals(goals) {
+    const adminContainer = document.getElementById("admin-goals");
+    adminContainer.innerHTML = "";
+
+    goals.forEach((goal, index) => {
+        const goalElement = document.createElement("div");
+        goalElement.classList.add("goal-item");
+
+        goalElement.innerHTML = `
+            <input type="text" value="${goal.title}" id="title-${index}">
+            <textarea id="description-${index}">${goal.description}</textarea>
+            <select id="status-${index}">
+                <option value="Future" ${goal.status === "Future" ? "selected" : ""}>Future</option>
+                <option value="In Progress" ${goal.status === "In Progress" ? "selected" : ""}>In Progress</option>
+                <option value="Achieved" ${goal.status === "Achieved" ? "selected" : ""}>Achieved</option>
+            </select>
+            ${goal.status === "In Progress" ? `<input type="number" value="${goal.progress}" id="progress-${index}" min="0" max="100">` : ""}
+            <button onclick="updateGoal(${index})">Save</button>
+            <button onclick="deleteGoal(${index})">Delete</button>
+        `;
+
+        adminContainer.appendChild(goalElement);
+    });
+}
+
+function updateGoal(index) {
+    fetch("goals.json")
+        .then(response => response.json())
+        .then(goals => {
+            goals[index].title = document.getElementById(`title-${index}`).value;
+            goals[index].description = document.getElementById(`description-${index}`).value;
+            goals[index].status = document.getElementById(`status-${index}`).value;
+            if (goals[index].status === "In Progress") {
+                goals[index].progress = document.getElementById(`progress-${index}`).value;
+            }
+
+            saveGoals(goals);
+        });
+}
+
+function deleteGoal(index) {
+    fetch("goals.json")
+        .then(response => response.json())
+        .then(goals => {
+            goals.splice(index, 1);
+            saveGoals(goals);
+        });
+}
+
+function saveGoals(goals) {
+    fetch("save_goals.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(goals)
+    }).then(() => loadGoals());
+}
