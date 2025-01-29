@@ -3,43 +3,72 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #f0f0f5;
     color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center; /* Ensure text is centered globally */
+}
+.dark-mode {
+    background-color: #1e1e1e;
+    color: white;
 }
 header {
-    background: #222;
-    color: white;
+    background: #ffffff;
+    color: black;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 nav {
-    display: flex;
-    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
     background-color: #444;
     padding: 10px 0;
+    text-align: center;
 }
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
-nav ul li a {
+nav ul li {
+    display: inline;
+}
+nav ul li a, #theme-toggle {
     text-decoration: none;
     color: white;
     font-weight: bold;
     transition: color 0.3s ease;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
-nav ul li a:hover {
+nav ul li a:hover, #theme-toggle:hover {
     color: #ffeb3b;
 }
+.centered {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh; /* Ensures it is properly centered */
+}
 footer {
-    background-color: #222;
-    color: white;
+    background-color: #ffffff;
+    color: black;
     text-align: center;
     padding: 10px;
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+.dark-mode footer {
+    background-color: #222;
+    color: white;
 }
