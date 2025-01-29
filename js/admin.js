@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const featureForm = document.getElementById("key-feature-form");
     const featureList = document.getElementById("feature-list");
+    let editIndex = null;
 
     featureForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -28,7 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function saveFeature(title, description, imageUrl) {
         let storedFeatures = JSON.parse(localStorage.getItem("features")) || [];
-        storedFeatures.push({ title, description, imageUrl });
+        if (editIndex !== null) {
+            storedFeatures[editIndex] = { title, description, imageUrl };
+            editIndex = null;
+        } else {
+            storedFeatures.push({ title, description, imageUrl });
+        }
         localStorage.setItem("features", JSON.stringify(storedFeatures));
         loadFeatures();
     }
@@ -55,9 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("feature-title").value = feature.title;
         document.getElementById("feature-description").value = feature.description;
 
-        features.splice(index, 1);  // Remove the old entry before saving
-        localStorage.setItem("features", JSON.stringify(features));
-        loadFeatures();
+        editIndex = index;
     };
 
     window.deleteFeature = (index) => {
