@@ -40,14 +40,7 @@ nav ul li a:hover {
     color: #ffeb3b;
 }
 
-/* Admin Panel Structure */
-.admin-container {
-    max-width: 80%;
-    margin: 120px auto 50px auto;
-    text-align: center;
-}
-
-/* Tab Navigation for Different Pages */
+/* Admin Panel Tabs */
 .admin-tabs {
     display: flex;
     justify-content: center;
@@ -66,7 +59,16 @@ nav ul li a:hover {
     background: #0056b3;
 }
 
-/* Goal Management Section */
+/* Admin Panel Sections */
+.admin-section {
+    display: none;
+    margin-top: 30px;
+}
+.admin-section.active {
+    display: block;
+}
+
+/* Goal Management Styling */
 .goal-management {
     display: flex;
     flex-direction: column;
