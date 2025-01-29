@@ -76,16 +76,16 @@ header {
 /* Key Features Section */
 #features {
     margin: 50px auto;
-    max-width: 90%;
+    max-width: 85%;
     text-align: center;
 }
 
-/* Strict 4-Column Grid for Key Features */
+/* Arrange Key Features in a Centered 4-Column Grid */
 .feature-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Always 4 per row */
+    grid-template-columns: repeat(4, minmax(200px, 1fr)); /* 4 per row on PC */
     gap: 20px;
-    justify-items: center;
+    justify-content: center;
     align-items: stretch;
     margin-top: 20px;
 }
@@ -97,7 +97,10 @@ header {
     text-align: center;
     transition: transform 0.3s ease-in-out;
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .feature-tile:hover {
     transform: scale(1.05);
@@ -111,12 +114,12 @@ header {
 /* Responsive Layout for Smaller Screens */
 @media (max-width: 1024px) {
     .feature-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+        grid-template-columns: repeat(2, minmax(200px, 1fr)); /* 2 per row on tablets */
     }
 }
 @media (max-width: 768px) {
     .feature-container {
-        grid-template-columns: repeat(1, 1fr); /* 1 per row on mobile */
+        grid-template-columns: repeat(1, minmax(200px, 1fr)); /* 1 per row on mobile */
     }
 }
 
