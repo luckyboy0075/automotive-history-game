@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="subscribe">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,26 +7,28 @@
     <link rel="stylesheet" href="css/subscribe.css">
 </head>
 <body>
+
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="goals.html">Goals</a></li>
-            <li><a href="social_media.html">Social Media</a></li>
-            <li><a href="subscribe.html" class="active">Subscribe</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="goals.html" class="nav-link">Goals</a>
+            <a href="subscribe.html" class="nav-link active">Subscribe</a>
+            <a href="social_media.html" class="nav-link">Social Media</a>
+        </div>
     </nav>
 
-    <div class="subscribe-container">
-        <h1>Subscribe for Updates</h1>
-        <p>Enter your email below to stay updated with the latest news.</p>
+    <header class="hero">
+        <div class="hero-overlay">
+            <h1>Stay Updated</h1>
+            <p>Subscribe to our newsletter.</p>
+        </div>
+    </header>
 
-        <form id="subscribe-form">
-            <input type="email" id="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-        </form>
-
-        <div id="success-message" class="hidden">Thank you for subscribing!</div>
-    </div>
+    <section class="subscribe-container">
+        <h2>Subscribe Now</h2>
+        <input type="email" placeholder="Enter your email" required>
+        <button>Subscribe</button>
+    </section>
 
     <footer>
         <p>© 2025 Automotive History Game. All rights reserved.</p>

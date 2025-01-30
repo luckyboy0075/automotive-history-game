@@ -1,113 +1,27 @@
+@import url('global.css');
 
-/* General Styling for Admin Panel */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-/* Navigation Bar */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #444;
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-}
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-nav ul li {
-    display: inline;
-}
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 10px 15px;
-}
-nav ul li a:hover {
-    color: #ffeb3b;
-}
-
-/* Admin Panel Tabs */
-.admin-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-.admin-tabs button {
-    padding: 10px 15px;
-    border: none;
-    background: #007bff;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.admin-tabs button:hover {
-    background: #0056b3;
-}
-
-/* Admin Panel Sections */
-.admin-section {
-    display: none;
-    margin-top: 30px;
-}
-.admin-section.active {
-    display: block;
-}
-
-/* Goal Management Styling */
-.goal-management {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.goal-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.goal-item {
+/* Admin Page Styling */
+.admin-container {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
     background: white;
     border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-/* Progress Input Styling */
-.progress-input {
-    width: 80%;
-    margin-top: 10px;
+button {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* Admin Panel Buttons */
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
 button:hover {
-    background-color: #0056b3;
+    background: var(--accent-color);
 }

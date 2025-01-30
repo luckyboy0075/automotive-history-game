@@ -1,47 +1,36 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="goals">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goals - Automotive History Game</title>
+    <title>Project Goals</title>
     <link rel="stylesheet" href="css/goals.css">
 </head>
 <body>
+
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="goals.html">Goals</a></li>
-            <li><a href="subscribe.html">Subscribe</a></li>
-            <li><a href="social_media.html">Social Media</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="goals.html" class="nav-link active">Goals</a>
+            <a href="subscribe.html" class="nav-link">Subscribe</a>
+            <a href="social_media.html" class="nav-link">Social Media</a>
+        </div>
     </nav>
 
-    <header class="header">
-        <h1>Project Goals</h1>
+    <header class="hero">
+        <div class="hero-overlay">
+            <h1>Project Goals</h1>
+        </div>
     </header>
 
-    <div class="container">
-        <section class="goal-section">
-            <h2>Future Goals</h2>
-            <div id="future-goals" class="goal-container"></div>
-        </section>
-
-        <section class="goal-section">
-            <h2>In Progress Goals</h2>
-            <div id="in-progress-goals" class="goal-container"></div>
-        </section>
-
-        <section class="goal-section">
-            <h2>Achieved Goals</h2>
-            <div id="achieved-goals" class="goal-container"></div>
-        </section>
-    </div>
+    <section class="goals-container">
+        <h2>Current Goals</h2>
+        <div id="goals-list"></div>
+    </section>
 
     <footer>
         <p>© 2025 Automotive History Game. All rights reserved.</p>
     </footer>
 
-    <script src="js/goals.js"></script>
 </body>
 </html>

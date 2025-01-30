@@ -1,164 +1,40 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="admin">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Automotive History Game</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="css/admin.css">
+    <script defer src="js/main.js"></script>
 </head>
 <body>
+
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="goals.html">Goals</a></li>
-            <li><a href="subscribe.html">Subscribe</a></li>
-            <li><a href="social_media.html">Social Media</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="goals.html" class="nav-link">Goals</a>
+            <a href="subscribe.html" class="nav-link">Subscribe</a>
+            <a href="social_media.html" class="nav-link">Social Media</a>
+        </div>
     </nav>
 
-    <div class="admin-container">
-        <h1>Admin Panel</h1>
-
-        <!-- Tabs for Page Management -->
-        <div class="admin-tabs">
-            <button data-target="goals" onclick="showSection('goals')">Manage Goals</button>
-            <button data-target="features" onclick="showSection('features')">Manage Features</button>
-            <button data-target="media" onclick="showSection('media')">Manage Media</button>
+    <header class="hero">
+        <div class="hero-overlay">
+            <h1>Admin Panel</h1>
+            <p>Manage site content and settings.</p>
         </div>
+    </header>
 
-        <!-- Goal Management Section -->
-        <div id="goals" class="admin-section active">
-            <h2>Manage Goals</h2>
+    <section class="admin-container">
+        <h2>Site Management</h2>
+        <button onclick="manageGoals()">Manage Goals</button>
+        <button onclick="manageMedia()">Manage Media</button>
+        <button onclick="manageUsers()">Manage Users</button>
+    </section>
 
-            <!-- Input Fields for Adding a New Goal -->
-            <div class="goal-form">
-                <label for="goal-title">Goal Name:</label>
-                <input type="text" id="goal-title" placeholder="Enter goal name">
-
-                <label for="goal-description">Goal Description:</label>
-                <textarea id="goal-description" placeholder="Enter goal description"></textarea>
-
-                <label for="goal-status">Status:</label>
-                <select id="goal-status" onchange="toggleProgressField()">
-                    <option value="Future">Future</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Achieved">Achieved</option>
-                </select>
-
-                <!-- Progress Field (Initially Hidden) -->
-                <div id="progress-container" style="display:none;">
-                    <label for="goal-progress">Progress (%):</label>
-                    <input type="number" id="goal-progress" min="0" max="100" placeholder="Enter progress">
-                </div>
-
-                <label for="goal-image">Upload Goal Image:</label>
-                <input type="file" id="goal-image" accept="image/*">
-
-                <button onclick="addNewGoal()">Add Goal</button>
-            </div>
-
-            <div id="admin-goals" class="goal-list"></div>
-        </div>
-
-        <!-- Popup Notification -->
-        <div id="goal-popup" class="popup">
-            <div class="popup-content">
-                <p>Goal successfully added!</p>
-                <button onclick="closePopup()">OK</button>
-            </div>
-        </div>
-
-        <!-- Feature Management Section -->
-        <div id="features" class="admin-section">
-            <h2>Manage Features</h2>
-            <div id="admin-features" class="feature-list"></div>
-            <button onclick="addNewFeature()">Add New Feature</button>
-        </div>
-
-        <!-- Media Management Section -->
-        <div id="media" class="admin-section">
-            <h2>Manage Media</h2>
-            <input type="file" id="media-upload" accept="image/*,video/*">
-            <button onclick="uploadMedia()">Upload</button>
-            <div id="admin-media" class="media-list"></div>
-        </div>
-    </div>
-
-    <script>
-        function toggleProgressField() {
-            const status = document.getElementById("goal-status").value;
-            const progressContainer = document.getElementById("progress-container");
-            if (status === "In Progress") {
-                progressContainer.style.display = "block";
-            } else {
-                progressContainer.style.display = "none";
-            }
-        }
-
-        function showPopup() {
-            const popup = document.getElementById("goal-popup");
-            popup.style.display = "block";
-        }
-
-        function closePopup() {
-            const popup = document.getElementById("goal-popup");
-            popup.style.display = "none";
-        }
-
-        function addNewGoal() {
-            const title = document.getElementById("goal-title").value.trim();
-            const description = document.getElementById("goal-description").value.trim();
-            const status = document.getElementById("goal-status").value;
-            const progress = status === "In Progress" ? document.getElementById("goal-progress").value : 0;
-
-            if (!title || !description) {
-                alert("Goal Name and Description are required.");
-                return;
-            }
-
-            fetch("goals.json")
-                .then(response => response.json())
-                .then(goals => {
-                    const newGoal = {
-                        title: title,
-                        description: description,
-                        status: status,
-                        progress: progress,
-                        image: ""
-                    };
-                    goals.push(newGoal);
-                    saveGoals(goals);
-                    showPopup();
-                })
-                .catch(error => console.error("Error adding new goal:", error));
-        }
-    </script>
-
-    <style>
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            text-align: center;
-            z-index: 1000;
-        }
-        .popup-content button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <footer>
+        <p>© 2025 Automotive History Game. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
