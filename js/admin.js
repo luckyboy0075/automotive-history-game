@@ -12,6 +12,12 @@ function loadGoals() {
         .catch(error => console.error("Error loading goals:", error));
 }
 
+// 🔹 Toggle Goal Management Section Visibility
+function toggleGoalSection() {
+    const goalContainer = document.getElementById("admin-goal-container");
+    goalContainer.classList.toggle("hidden");
+}
+
 function renderGoals(goals) {
     const goalList = document.getElementById("goal-list");
     goalList.innerHTML = "";

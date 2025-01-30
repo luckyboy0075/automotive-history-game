@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="css/admin.css">
-    <script defer src="js/admin.js"></script>
+    <script defer src="js/main.js"></script>
 </head>
 <body>
 
@@ -30,33 +30,38 @@
         </div>
     </header>
 
-    <!-- 🔹 Goal Management Section -->
+    <!-- 🔹 Admin Section -->
     <section class="admin-container">
+        <h2>Site Management</h2>
+        <button onclick="manageGoals()">Manage Goals</button>
+        <button onclick="manageUsers()">Manage Users</button>
+        <button onclick="manageMedia()">Manage Media</button>
+    </section>
+
+    <!-- 🔹 Goal Management Section (Initially Hidden) -->
+    <section id="admin-goal-container" class="admin-goal-container hidden">
         <h2>Manage Goals</h2>
 
-        <!-- Goal Form -->
-        <div class="goal-form">
-            <label for="goal-title">Goal Title:</label>
-            <input type="text" id="goal-title" placeholder="Enter goal title">
+        <label for="goal-title">Goal Title:</label>
+        <input type="text" id="goal-title" placeholder="Enter goal title">
 
-            <label for="goal-description">Goal Description:</label>
-            <textarea id="goal-description" placeholder="Enter goal description"></textarea>
+        <label for="goal-description">Goal Description:</label>
+        <textarea id="goal-description" placeholder="Enter goal description"></textarea>
 
-            <label for="goal-status">Status:</label>
-            <select id="goal-status">
-                <option value="Future">Future</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Achieved">Achieved</option>
-            </select>
+        <label for="goal-status">Status:</label>
+        <select id="goal-status">
+            <option value="Future">Future</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Achieved">Achieved</option>
+        </select>
 
-            <label for="goal-progress">Progress (%):</label>
-            <input type="number" id="goal-progress" min="0" max="100" placeholder="Enter progress">
+        <label for="goal-progress">Progress (%):</label>
+        <input type="number" id="goal-progress" min="0" max="100" placeholder="Enter progress">
 
-            <label for="goal-image">Upload Goal Image:</label>
-            <input type="file" id="goal-image" accept="image/*">
+        <label for="goal-image">Upload Goal Image:</label>
+        <input type="file" id="goal-image" accept="image/*">
 
-            <button onclick="addGoal()">Add Goal</button>
-        </div>
+        <button onclick="addGoal()">Add Goal</button>
 
         <!-- Goal List -->
         <div id="goal-list"></div>
