@@ -10,6 +10,31 @@ function loadGoals() {
     renderGoals(goals);
 }
 
+// 🔹 Function to Render Goals on the Page
+function renderGoals(goals) {
+    const goalList = document.getElementById("goal-list");
+    goalList.innerHTML = "";
+
+    if (goals.length === 0) {
+        goalList.innerHTML = "<p>No goals added yet.</p>";
+        return;
+    }
+
+    goals.forEach((goal, index) => {
+        const goalElement = document.createElement("div");
+        goalElement.classList.add("goal-item");
+        goalElement.innerHTML = `
+            <h3>${goal.title}</h3>
+            <p>${goal.description}</p>
+            <p>Status: ${goal.status}</p>
+            <p>Progress: ${goal.progress}%</p>
+            <button onclick="editGoal(${index})">✏ Edit</button>
+            <button onclick="deleteGoal(${index})">🗑 Delete</button>
+        `;
+        goalList.appendChild(goalElement);
+    });
+}
+
 // 🔹 Function to Add or Edit a Goal
 function saveGoal() {
     const title = document.getElementById("goal-title").value.trim();
@@ -36,38 +61,25 @@ function saveGoal() {
     resetForm();
 }
 
-// 🔹 Function to Reset the Form After Adding or Editing a Goal
-function resetForm() {
-    document.getElementById("goal-title").value = "";
-    document.getElementById("goal-description").value = "";
-    document.getElementById("goal-status").value = "Future";
-    document.getElementById("goal-progress").value = "";
-    document.getElementById("goal-index").value = "";
+// 🔹 Function to Edit a Goal
+function editGoal(index) {
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    const goal = goals[index];
+
+    document.getElementById("goal-title").value = goal.title;
+    document.getElementById("goal-description").value = goal.description;
+    document.getElementById("goal-status").value = goal.status;
+    document.getElementById("goal-progress").value = goal.progress;
+    document.getElementById("goal-index").value = index;  // Store index for saving edits
+
+    toggleGoalSection();  // Show the form
 }
 
-// 🔹 Function to Render Goals on the Page
-function renderGoals(goals) {
-    const goalList = document.getElementById("goal-list");
-    goalList.innerHTML = "";
-
-    if (goals.length === 0) {
-        goalList.innerHTML = "<p>No goals added yet.</p>";
-        return;
-    }
-
-    goals.forEach((goal, index) => {
-        const goalElement = document.createElement("div");
-        goalElement.classList.add("goal-item");
-        goalElement.innerHTML = `
-            <h3>${goal.title}</h3>
-            <p>${goal.description}</p>
-            <p>Status: ${goal.status}</p>
-            <p>Progress: ${goal.progress}%</p>
-            <button onclick="editGoal(${index})">✏ Edit</button>
-            <button onclick="deleteGoal(${index})">🗑 Delete</button>
-        `;
-        goalList.appendChild(goalElement);
-    });
+// 🔹 Function to Delete a Goal
+function deleteGoal(index) {
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    goals.splice(index, 1);
+    saveGoals(goals);
 }
 
 // 🔹 Function to Save Goals in LocalStorage
