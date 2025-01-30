@@ -8,13 +8,17 @@
     <script defer src="./js/main.js"></script>
 </head>
 <body>
+
     <!-- Navigation Bar -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-link active">Home</a>
-            <a href="media.html" class="nav-link">Media</a>
-            <a href="contacts.html" class="nav-link">Contacts</a>
+            <a href="goals.html" class="nav-link">Goals</a>
             <a href="subscribe.html" class="nav-link">Subscribe</a>
+            <a href="social_media.html" class="nav-link">Social Media</a>
+            <div class="theme-toggle">
+                <button id="themeToggle">🌞 / 🌙</button>
+            </div>
             <div class="language-dropdown">
                 <select id="languageSelect" class="language-select">
                     <option value="en">🇺🇸 English</option>
@@ -28,32 +32,30 @@
         </div>
     </nav>
 
-    <!-- Header -->
-    <header class="main-header">
-        <h1 data-translate="mainTitle">Discover the Untold History of Cars</h1>
+    <!-- Hero Banner -->
+    <header class="hero">
+        <div class="hero-overlay">
+            <h1 data-translate="mainTitle">Discover the Untold History of Cars</h1>
+            <p data-translate="mainDesc">An immersive blend of storytelling and racing simulation.</p>
+            <a href="#features" class="cta-button">Explore Features</a>
+        </div>
     </header>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <h2 data-translate="aboutTitle">About the Game</h2>
-        <p data-translate="aboutDesc">Automotive History Game is a unique blend of storytelling and simulation, designed to educate and entertain.</p>
-    </section>
-
-    <!-- Key Features -->
+    <!-- Key Features Section -->
     <section id="features" class="features-section">
         <h2 data-translate="keyFeaturesTitle">Key Features</h2>
         <div class="features-container">
-            <div class="feature">
+            <div class="feature-card">
                 <h3 data-translate="storytelling">Storytelling Mode</h3>
-                <p data-translate="storytellingDesc">Immerse yourself in the lives of iconic figures like Ferdinand Porsche and the evolution of automotive history.</p>
+                <p data-translate="storytellingDesc">Experience the lives of automotive legends.</p>
             </div>
-            <div class="feature">
+            <div class="feature-card">
                 <h3 data-translate="simulation">Simulation Mode</h3>
-                <p data-translate="simulationDesc">Build, customize, and race your cars in highly realistic environments.</p>
+                <p data-translate="simulationDesc">Tune and race your dream cars in ultra-realistic physics.</p>
             </div>
-            <div class="feature">
+            <div class="feature-card">
                 <h3 data-translate="educational">Educational Gameplay</h3>
-                <p data-translate="educationalDesc">Learn about automotive innovations, traffic laws, and the history of motorsport.</p>
+                <p data-translate="educationalDesc">Learn about car innovations, traffic laws, and racing history.</p>
             </div>
         </div>
     </section>
@@ -61,9 +63,12 @@
     <!-- Footer -->
     <footer>
         <p>© 2025 Automotive History Game. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">YouTube</a>
+        <div class="social-icons">
+            <a href="#"><img src="./assets/facebook.svg" alt="Facebook"></a>
+            <a href="#"><img src="./assets/twitter.svg" alt="Twitter"></a>
+            <a href="#"><img src="./assets/youtube.svg" alt="YouTube"></a>
         </div>
     </footer>
+
 </body>
 </html>
