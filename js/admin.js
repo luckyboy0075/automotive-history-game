@@ -36,6 +36,31 @@ function saveGoal() {
     resetForm();
 }
 
+// 🔹 Function to Render Goals on the Page
+function renderGoals(goals) {
+    const goalList = document.getElementById("goal-list");
+    goalList.innerHTML = "";
+
+    if (goals.length === 0) {
+        goalList.innerHTML = "<p>No goals added yet.</p>";
+        return;
+    }
+
+    goals.forEach((goal, index) => {
+        const goalElement = document.createElement("div");
+        goalElement.classList.add("goal-item");
+        goalElement.innerHTML = `
+            <h3>${goal.title}</h3>
+            <p>${goal.description}</p>
+            <p>Status: ${goal.status}</p>
+            <p>Progress: ${goal.progress}%</p>
+            <button onclick="editGoal(${index})">✏ Edit</button>
+            <button onclick="deleteGoal(${index})">🗑 Delete</button>
+        `;
+        goalList.appendChild(goalElement);
+    });
+}
+
 // 🔹 Function to Save Goals in LocalStorage
 function saveGoals(goals) {
     localStorage.setItem("goals", JSON.stringify(goals));
