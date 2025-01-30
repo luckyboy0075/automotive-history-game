@@ -10,35 +10,38 @@ function toggleGoalSection() {
     goalContainer.classList.toggle("hidden");
 }
 
-// 🔹 Function to Add a New Goal
-function addGoal() {
+// 🔹 Function to Add a New Goal or Save Edits
+function saveGoal() {
     const title = document.getElementById("goal-title").value.trim();
     const description = document.getElementById("goal-description").value.trim();
     const status = document.getElementById("goal-status").value;
     const progress = document.getElementById("goal-progress").value || "0";  // Default to 0%
+    const goalIndex = document.getElementById("goal-index").value;  // Hidden field for editing
 
     if (!title || !description) {
         alert("Please enter a goal title and description.");
         return;
     }
 
-    const newGoal = {
-        title: title,
-        description: description,
-        status: status,
-        progress: progress
-    };
-
     let goals = JSON.parse(localStorage.getItem("goals")) || [];
-    goals.push(newGoal);
+
+    if (goalIndex === "") {
+        // If no index, it's a new goal
+        goals.push({ title, description, status, progress });
+    } else {
+        // Editing an existing goal
+        goals[goalIndex] = { title, description, status, progress };
+        document.getElementById("goal-index").value = "";  // Reset index field after saving
+    }
+
     saveGoals(goals);
+    resetForm();
 }
 
 // 🔹 Function to Load Goals
 function loadGoals() {
     let goals = JSON.parse(localStorage.getItem("goals")) || [];
     if (goals.length === 0) {
-        // Initialize with default goals if empty
         goals = [
             { title: "Launch Website", description: "Deploy first version of the site.", status: "Achieved", progress: "100" },
             { title: "Enable User Registration", description: "Allow users to sign up.", status: "Future", progress: "0" }
@@ -60,10 +63,25 @@ function renderGoals(goals) {
             <p>${goal.description}</p>
             <p>Status: ${goal.status}</p>
             <p>Progress: ${goal.progress}%</p>
+            <button onclick="editGoal(${index})">✏ Edit</button>
             <button onclick="deleteGoal(${index})">🗑 Delete</button>
         `;
         goalList.appendChild(goalElement);
     });
+}
+
+// 🔹 Function to Edit an Existing Goal
+function editGoal(index) {
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    const goal = goals[index];
+
+    document.getElementById("goal-title").value = goal.title;
+    document.getElementById("goal-description").value = goal.description;
+    document.getElementById("goal-status").value = goal.status;
+    document.getElementById("goal-progress").value = goal.progress;
+    document.getElementById("goal-index").value = index;  // Store index for saving edits
+
+    toggleGoalSection();  // Show the form
 }
 
 // 🔹 Function to Delete a Goal
@@ -73,10 +91,19 @@ function deleteGoal(index) {
     saveGoals(goals);
 }
 
-// 🔹 Function to Save Goals in LocalStorage (Instead of a File)
+// 🔹 Function to Save Goals in LocalStorage
 function saveGoals(goals) {
     localStorage.setItem("goals", JSON.stringify(goals));
     loadGoals();  // Reload goal list after saving
+}
+
+// 🔹 Function to Reset Form Fields After Saving or Editing
+function resetForm() {
+    document.getElementById("goal-title").value = "";
+    document.getElementById("goal-description").value = "";
+    document.getElementById("goal-status").value = "Future";
+    document.getElementById("goal-progress").value = "";
+    document.getElementById("goal-index").value = "";
 }
 
 // 🔹 Manage Dark/Light Mode

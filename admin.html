@@ -42,6 +42,10 @@
     <section id="admin-goal-container" class="admin-goal-container hidden">
         <h2>Manage Goals</h2>
 
+        <!-- 🔹 Hidden Field for Editing Goals -->
+        <input type="hidden" id="goal-index">
+
+        <!-- 🔹 Goal Form -->
         <label for="goal-title">Goal Title:</label>
         <input type="text" id="goal-title" placeholder="Enter goal title">
 
@@ -58,9 +62,7 @@
         <label for="goal-progress">Progress (%):</label>
         <input type="number" id="goal-progress" min="0" max="100" placeholder="Enter progress">
 
-        <label for="goal-image">Upload Goal Image:</label>
-        <input type="file" id="goal-image" accept="image/*">
-
+        <button onclick="saveGoal()">Save Goal</button>
         <button onclick="addGoal()">Add Goal</button>
 
         <!-- Goal List -->
