@@ -1,5 +1,21 @@
 @import url('global.css');
 
+/* Navigation Bar */
+nav {
+    background: var(--secondary-color);
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
 /* Goals Page Styling */
 .goals-container {
     max-width: 1000px;
