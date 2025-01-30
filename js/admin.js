@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setupThemeToggle();
 });
 
-// 🔹 Function to Load Goals
+// 🔹 Function to Load Goals from LocalStorage
 function loadGoals() {
     let goals = JSON.parse(localStorage.getItem("goals")) || [];
     renderGoals(goals);
@@ -82,7 +82,7 @@ function deleteGoal(index) {
     saveGoals(goals);
 }
 
-// 🔹 Function to Save Goals in LocalStorage
+// 🔹 Function to Save Goals in LocalStorage (Replaces PHP Dependency)
 function saveGoals(goals) {
     localStorage.setItem("goals", JSON.stringify(goals));
     loadGoals();
