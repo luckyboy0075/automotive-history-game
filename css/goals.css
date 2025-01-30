@@ -27,3 +27,28 @@
     border-radius: 5px;
     margin-top: 10px;
 }
+
+/* 🔹 Modernized Language Selector */
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.language-select {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.language-select:hover {
+    background: var(--accent-color);
+}
+
+.language-select:focus {
+    outline: none;
+}
