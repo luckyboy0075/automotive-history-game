@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
     setupThemeToggle();
 });
 
+// 🔹 Toggle Goal Management Section Visibility
+function toggleGoalSection() {
+    const goalContainer = document.getElementById("admin-goal-container");
+    goalContainer.classList.toggle("hidden");
+}
+
 // 🔹 Function to Add a New Goal
 function addGoal() {
     const title = document.getElementById("goal-title").value.trim();
@@ -23,28 +29,23 @@ function addGoal() {
         progress: progress
     };
 
-    fetch("goals.json")
-        .then(response => {
-            if (!response.ok) throw new Error("goals.json not found");
-            return response.json();
-        })
-        .catch(() => [])  // If file doesn't exist, start with an empty array
-        .then(goals => {
-            goals.push(newGoal);
-            saveGoals(goals);
-        });
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    goals.push(newGoal);
+    saveGoals(goals);
 }
 
 // 🔹 Function to Load Goals
 function loadGoals() {
-    fetch("goals.json")
-        .then(response => {
-            if (!response.ok) throw new Error("goals.json not found");
-            return response.json();
-        })
-        .catch(() => [])  // If file is missing, return an empty array
-        .then(goals => renderGoals(goals))
-        .catch(error => console.error("Error loading goals:", error));
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    if (goals.length === 0) {
+        // Initialize with default goals if empty
+        goals = [
+            { title: "Launch Website", description: "Deploy first version of the site.", status: "Achieved", progress: "100" },
+            { title: "Enable User Registration", description: "Allow users to sign up.", status: "Future", progress: "0" }
+        ];
+        saveGoals(goals);
+    }
+    renderGoals(goals);
 }
 
 // 🔹 Function to Render Goals in the List
@@ -67,21 +68,15 @@ function renderGoals(goals) {
 
 // 🔹 Function to Delete a Goal
 function deleteGoal(index) {
-    fetch("goals.json")
-        .then(response => response.json())
-        .then(goals => {
-            goals.splice(index, 1);
-            saveGoals(goals);
-        });
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    goals.splice(index, 1);
+    saveGoals(goals);
 }
 
-// 🔹 Function to Save Goals to JSON File
+// 🔹 Function to Save Goals in LocalStorage (Instead of a File)
 function saveGoals(goals) {
-    fetch("save_goals.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(goals)
-    }).then(() => loadGoals());  // Reload goal list after saving
+    localStorage.setItem("goals", JSON.stringify(goals));
+    loadGoals();  // Reload goal list after saving
 }
 
 // 🔹 Manage Dark/Light Mode
@@ -95,42 +90,6 @@ function setupThemeToggle() {
         document.body.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
     });
-}
-
-// 🔹 Toggle Goal Management Section Visibility
-function toggleGoalSection() {
-    const goalContainer = document.getElementById("admin-goal-container");
-    goalContainer.classList.toggle("hidden");
-}
-
-function addGoal() {
-    const title = document.getElementById("goal-title").value.trim();
-    const description = document.getElementById("goal-description").value.trim();
-    if (!title || !description) return alert("Please enter goal title and description.");
-
-    fetch("goals.json")
-        .then(response => response.json())
-        .then(goals => {
-            goals.push({ title, description });
-            saveGoals(goals);
-        });
-}
-
-function deleteGoal(index) {
-    fetch("goals.json")
-        .then(response => response.json())
-        .then(goals => {
-            goals.splice(index, 1);
-            saveGoals(goals);
-        });
-}
-
-function saveGoals(goals) {
-    fetch("save_goals.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(goals)
-    }).then(() => loadGoals());
 }
 
 // 🔹 Manage Media
