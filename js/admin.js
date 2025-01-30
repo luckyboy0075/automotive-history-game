@@ -36,6 +36,15 @@ function saveGoal() {
     resetForm();
 }
 
+// 🔹 Function to Reset the Form After Adding or Editing a Goal
+function resetForm() {
+    document.getElementById("goal-title").value = "";
+    document.getElementById("goal-description").value = "";
+    document.getElementById("goal-status").value = "Future";
+    document.getElementById("goal-progress").value = "";
+    document.getElementById("goal-index").value = "";
+}
+
 // 🔹 Function to Render Goals on the Page
 function renderGoals(goals) {
     const goalList = document.getElementById("goal-list");
