@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    loadGoals();
+    // Wait for goal-list to exist before loading goals
+    const checkExist = setInterval(() => {
+        const goalList = document.getElementById("goal-list");
+        if (goalList) {
+            clearInterval(checkExist);
+            loadGoals();
+        }
+    }, 100);  // Check every 100ms
 });
 
 // 🔹 Function to Load and Display Goals on `goals.html`
