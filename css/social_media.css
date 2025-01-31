@@ -93,3 +93,15 @@ nav {
 .language-select:focus {
     outline: none;
 }
+
+/* Footer */
+footer {
+    background: var(--secondary-color);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+}
