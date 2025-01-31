@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Wait for goal-list to exist before loading goals
-    const checkExist = setInterval(() => {
-        const goalList = document.getElementById("goal-list");
-        if (goalList) {
-            clearInterval(checkExist);
-            loadGoals();
-        }
-    }, 100);  // Check every 100ms
+    waitForElement("#goal-list", loadGoals);
 });
+
+// 🔹 Function to Wait for an Element Before Running Code
+function waitForElement(selector, callback) {
+    const element = document.querySelector(selector);
+    if (element) {
+        callback();  // Run function once the element exists
+    } else {
+        setTimeout(() => waitForElement(selector, callback), 100);
+    }
+}
 
 // 🔹 Function to Load and Display Goals on `goals.html`
 function loadGoals() {
