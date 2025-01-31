@@ -75,6 +75,12 @@ function editGoal(index) {
     toggleGoalSection();  // Show the form
 }
 
+// 🔹 Toggle Goal Management Section Visibility
+function toggleGoalSection() {
+    const goalContainer = document.getElementById("admin-goal-container");
+    goalContainer.classList.toggle("hidden");
+}
+
 // 🔹 Function to Delete a Goal
 function deleteGoal(index) {
     let goals = JSON.parse(localStorage.getItem("goals")) || [];
