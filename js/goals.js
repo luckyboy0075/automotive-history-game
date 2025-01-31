@@ -4,9 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // 🔹 Function to Load and Display Goals on `goals.html`
 function loadGoals() {
-    let goals = JSON.parse(localStorage.getItem("goals")) || [];
-
     const goalList = document.getElementById("goal-list");
+    if (!goalList) {
+        console.error("Error: Element with ID 'goal-list' not found.");
+        return;
+    }
+
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
     goalList.innerHTML = "";
 
     if (goals.length === 0) {
