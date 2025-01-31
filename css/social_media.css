@@ -38,7 +38,6 @@ nav {
 
 /* Hero Section */
 .hero {
-    background: url('../assets/hero-bg.jpg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     justify-content: center;
