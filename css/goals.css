@@ -89,3 +89,43 @@ nav {
 .language-select:focus {
     outline: none;
 }
+
+/* 🔹 Goals Container */
+.goals-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* 🔹 Goal Tile Styling */
+.goal-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.goal-item:hover {
+    transform: scale(1.05);
+}
+
+/* 🔹 Progress Bar Styling (Only for Goals "In Progress") */
+.progress-container {
+    width: 100%;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 10px;
+    background: var(--primary-color);
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+}
