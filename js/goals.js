@@ -32,7 +32,7 @@ function loadGoals() {
 
     // 🔹 Sort Goals: "In Progress" First, "Future" Second, "Achieved" Last
     goals.sort((a, b) => {
-        const statusOrder = { "In Progress": 1, "Future": 2, "Achieved": 3 };
+      const statusOrder = {  "Future": 1, "In Progress": 2, "Achieved": 3 };
         return statusOrder[a.status] - statusOrder[b.status];
     });
 
