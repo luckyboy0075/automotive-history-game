@@ -26,3 +26,10 @@ function loadGoals() {
         goalList.appendChild(goalElement);
     });
 }
+
+// 🔹 Detect Changes in LocalStorage and Update Goals in Real-Time
+window.addEventListener("storage", function (event) {
+    if (event.key === "goals") {
+        loadGoals();  // Reload the goals when changes occur
+    }
+});

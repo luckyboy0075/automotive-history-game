@@ -92,6 +92,9 @@ function deleteGoal(index) {
 function saveGoals(goals) {
     localStorage.setItem("goals", JSON.stringify(goals));
     loadGoals();
+
+    // 🔹 Dispatch event so `goals.js` detects changes
+    window.dispatchEvent(new Event("storage"));
 }
 
 // 🔹 Function to Reset the Form After Adding or Editing a Goal
