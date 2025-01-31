@@ -30,6 +30,12 @@ function loadGoals() {
         localStorage.setItem("goals", JSON.stringify(goals));
     }
 
+    // 🔹 Sort Goals: "In Progress" First, "Future" Second, "Achieved" Last
+    goals.sort((a, b) => {
+        const statusOrder = { "In Progress": 1, "Future": 2, "Achieved": 3 };
+        return statusOrder[a.status] - statusOrder[b.status];
+    });
+
     goalList.innerHTML = "";
 
     if (goals.length === 0) {
@@ -63,7 +69,7 @@ function loadGoals() {
         goalList.appendChild(goalElement);
     });
 
-    console.log("Goals loaded successfully.");  // Debugging log
+    console.log("Goals loaded and sorted successfully.");  // Debugging log
 }
 
 // 🔹 Detect Changes in LocalStorage and Update Goals in Real-Time
