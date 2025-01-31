@@ -36,6 +36,23 @@ nav {
     color: white;
 }
 
+/* Hero Section */
+.hero {
+    background: url('../assets/hero-bg.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 50px;
+    border-radius: 10px;
+}
 
 /* Social Media Page Styling */
 .social-container {
