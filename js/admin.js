@@ -61,15 +61,6 @@ function saveGoal() {
     resetForm();
 }
 
-// 🔹 Function to Reset the Form After Adding or Editing a Goal
-function resetForm() {
-    document.getElementById("goal-title").value = "";
-    document.getElementById("goal-description").value = "";
-    document.getElementById("goal-status").value = "Future";
-    document.getElementById("goal-progress").value = "";
-    document.getElementById("goal-index").value = "";
-}
-
 // 🔹 Function to Edit a Goal
 function editGoal(index) {
     let goals = JSON.parse(localStorage.getItem("goals")) || [];
@@ -91,10 +82,19 @@ function deleteGoal(index) {
     saveGoals(goals);
 }
 
-// 🔹 Function to Save Goals in LocalStorage (Replaces PHP Dependency)
+// 🔹 Function to Save Goals in LocalStorage (Replaces PHP)
 function saveGoals(goals) {
     localStorage.setItem("goals", JSON.stringify(goals));
     loadGoals();
+}
+
+// 🔹 Function to Reset the Form After Adding or Editing a Goal
+function resetForm() {
+    document.getElementById("goal-title").value = "";
+    document.getElementById("goal-description").value = "";
+    document.getElementById("goal-status").value = "Future";
+    document.getElementById("goal-progress").value = "";
+    document.getElementById("goal-index").value = "";
 }
 
 // 🔹 Function to Load and Display Media
