@@ -36,6 +36,11 @@ nav {
     color: white;
 }
 
+/* Key Features centring */
+.key-feature-title{
+    text-align: center;
+}
+
 /* Hero Section */
 .hero {
     background: url('../assets/hero-bg.jpg') no-repeat center center/cover;
