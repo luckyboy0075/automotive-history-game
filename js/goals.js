@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function waitForElement(selector, callback) {
     const element = document.querySelector(selector);
     if (element) {
-        callback();  // Run function once the element exists
+        callback();
     } else {
         setTimeout(() => waitForElement(selector, callback), 100);
     }
@@ -51,6 +51,7 @@ function loadGoals() {
         goalList.appendChild(goalElement);
     });
 }
+
 // 🔹 Detect Changes in LocalStorage and Update Goals in Real-Time
 window.addEventListener("storage", function (event) {
     if (event.key === "goals") {
