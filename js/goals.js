@@ -23,7 +23,7 @@ function loadGoals() {
     }
 
     // Retrieve goals from LocalStorage
-    let goals = JSON.parse(localStorage.getItem("goals"));
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
 
     if (!goals || goals.length === 0) {
         console.warn("No goals found in LocalStorage.");
@@ -35,6 +35,7 @@ function loadGoals() {
 
     // 🔹 Render Each Goal as a Tile with Progress Bar for "In Progress" Goals
     goals.forEach(goal => {
+        console.log("Rendering goal:", goal);  // Debugging log
         const goalElement = document.createElement("div");
         goalElement.classList.add("goal-item"); // Ensure tiles have the correct class
 
