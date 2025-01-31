@@ -14,7 +14,7 @@ function waitForElement(selector, callback) {
 
 // 🔹 Function to Load and Display Goals on `goals.html`
 function loadGoals() {
-    const goalList = document.getElementById("goal-list");
+    const goalList = document.getElementById("goals-list");
     if (!goalList) {
         console.error("Error: Element with ID 'goal-list' not found.");
         return;
