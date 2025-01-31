@@ -22,30 +22,27 @@ function loadGoals() {
         return;
     }
 
-    // Retrieve goals from LocalStorage
+    // Retrieve goals from LocalStorage and ensure it’s a valid array
     let goals = JSON.parse(localStorage.getItem("goals"));
-
-    if (!goals || goals.length === 0) {
-        console.warn("No goals found in LocalStorage. Creating a default goal.");
-        goals = [
-            {
-                title: "Default Goal",
-                description: "This is a placeholder goal. Add more goals via the Admin Panel.",
-                status: "Future",
-                progress: "0"
-            }
-        ];
-        localStorage.setItem("goals", JSON.stringify(goals));  // Store default goal
+    if (!Array.isArray(goals)) {
+        console.warn("Invalid data found in LocalStorage. Resetting goals.");
+        goals = [];
+        localStorage.setItem("goals", JSON.stringify(goals));
     }
 
     goalList.innerHTML = "";
+
+    if (goals.length === 0) {
+        goalList.innerHTML = "<p>No goals added yet.</p>";
+        return;
+    }
 
     // 🔹 Render Each Goal as a Tile with Progress Bar for "In Progress" Goals
     goals.forEach(goal => {
         console.log("Rendering goal:", goal);  // Debugging log
 
         const goalElement = document.createElement("div");
-        goalElement.classList.add("goal-item"); // Ensure tiles have the correct class
+        goalElement.classList.add("goal-item");
 
         let progressHTML = "";
         if (goal.status === "In Progress") {
@@ -74,4 +71,9 @@ window.addEventListener("storage", function (event) {
     if (event.key === "goals") {
         loadGoals();  // Reload goals when changes occur
     }
+});
+
+// 🔹 Ensure Goals Load on Page Reload
+window.addEventListener("load", function () {
+    loadGoals();
 });
