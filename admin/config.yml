@@ -1,12 +1,6 @@
 backend:
-  name: auth0
-  login: true
-  domain: "YOUR_AUTH0_DOMAIN"
-  client_id: "YOUR_AUTH0_CLIENT_ID"
-  redirect_uri: "https://your-site.netlify.app/admin/"
-  logout_url: "https://your-site.netlify.app/"
-  scope: "openid profile email"
-  audience: "https://YOUR_AUTH0_DOMAIN/api/v2/"
+  name: git-gateway
+  branch: main  # Change this to "master" if your default branch is named master
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
