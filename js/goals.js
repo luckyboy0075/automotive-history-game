@@ -12,41 +12,14 @@ function waitForElement(selector, callback) {
     }
 }
 
-// 🔹 Function to Load and Display Goals on `goals.html`
-function loadGoals() {
-    console.log("Loading goals...");  // Debugging log
+async function loadGoals() {
+    const response = await fetch("/content/goals/goals.json");
+    const goals = await response.json();
 
-    const goalList = document.getElementById("goals-list");
-    if (!goalList) {
-        console.error("Error: Element with ID 'goal-list' not found.");
-        return;
-    }
-
-    // Retrieve goals from LocalStorage and ensure it’s a valid array
-    let goals = JSON.parse(localStorage.getItem("goals"));
-    if (!Array.isArray(goals)) {
-        console.warn("Invalid data found in LocalStorage. Resetting goals.");
-        goals = [];
-        localStorage.setItem("goals", JSON.stringify(goals));
-    }
-
-    // 🔹 Sort Goals: "In Progress" First, "Future" Second, "Achieved" Last
-    goals.sort((a, b) => {
-      const statusOrder = {  "Future": 1, "In Progress": 2, "Achieved": 3 };
-        return statusOrder[a.status] - statusOrder[b.status];
-    });
-
+    const goalList = document.getElementById("goal-list");
     goalList.innerHTML = "";
 
-    if (goals.length === 0) {
-        goalList.innerHTML = "<p>No goals added yet.</p>";
-        return;
-    }
-
-    // 🔹 Render Each Goal as a Tile with Progress Bar for "In Progress" Goals
     goals.forEach(goal => {
-        console.log("Rendering goal:", goal);  // Debugging log
-
         const goalElement = document.createElement("div");
         goalElement.classList.add("goal-item");
 
@@ -68,8 +41,6 @@ function loadGoals() {
 
         goalList.appendChild(goalElement);
     });
-
-    console.log("Goals loaded and sorted successfully.");  // Debugging log
 }
 
 // 🔹 Detect Changes in LocalStorage and Update Goals in Real-Time
