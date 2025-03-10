@@ -13,13 +13,15 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             try {
-                if (typeof CMS !== "undefined") {
-                    CMS.init();
-                    console.log("Decap CMS loaded successfully.");
-                } else {
-                    console.error("Decap CMS script not loaded.");
-                    document.body.innerHTML += "<p style='color:red;'>Error: CMS is not defined. Try refreshing the page.</p>";
-                }
+                setTimeout(() => {
+                    if (typeof CMS !== "undefined") {
+                        CMS.init();
+                        console.log("Decap CMS loaded successfully.");
+                    } else {
+                        console.error("Decap CMS script not loaded.");
+                        document.body.innerHTML += "<p style='color:red;'>Error: CMS is not defined. Try refreshing the page.</p>";
+                    }
+                }, 500); // Delay initialization to prevent DOM issues
             } catch (error) {
                 console.error("Error initializing Decap CMS:", error);
                 document.body.innerHTML += "<p style='color:red;'>Error loading CMS. Check the console for details.</p>";
