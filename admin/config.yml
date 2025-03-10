@@ -1,8 +1,14 @@
 backend:
-  name: git-gateway
-  branch: main  # Change to your repository's default branch
+  name: auth0
+  login: true
+  domain: "YOUR_AUTH0_DOMAIN"
+  client_id: "YOUR_AUTH0_CLIENT_ID"
+  redirect_uri: "https://your-site.netlify.app/admin/"
+  logout_url: "https://your-site.netlify.app/"
+  scope: "openid profile email"
+  audience: "https://YOUR_AUTH0_DOMAIN/api/v2/"
 
-media_folder: "images/uploads"  # Where media files are stored
+media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
@@ -16,12 +22,3 @@ collections:
       - { label: "Status", name: "status", widget: "select", options: ["In Progress", "Future", "Achieved"] }
       - { label: "Progress (%)", name: "progress", widget: "number", value_type: "int", min: 0, max: 100 }
       - { label: "Image", name: "image", widget: "image", required: false }
-
-  - name: "features"
-    label: "Key Features"
-    folder: "content/features"
-    create: true
-    fields:
-      - { label: "Feature Title", name: "title", widget: "string" }
-      - { label: "Feature Description", name: "description", widget: "text" }
-      - { label: "Feature Image", name: "image", widget: "image", required: false }
