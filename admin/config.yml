@@ -1,8 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main  # Change this to "master" if your default branch is named master
+  name: proxy-backend
+  proxy_url: "https://your-netlify-site.netlify.app/.netlify/functions/auth" # Netlify function to authenticate with Auth0
+  branch: main  # Change to "master" if your repo uses master as the default branch
 
-media_folder: "images/uploads"
+media_folder: "images/uploads"  # Where media files are stored
 public_folder: "/images/uploads"
 
 collections:
