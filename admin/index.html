@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Decap CMS</title>
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <script defer src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 </head>
 <body>
     <h1>Admin Panel</h1>
@@ -13,8 +13,13 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             try {
-                CMS.init();
-                console.log("Decap CMS loaded successfully.");
+                if (typeof CMS !== "undefined") {
+                    CMS.init();
+                    console.log("Decap CMS loaded successfully.");
+                } else {
+                    console.error("Decap CMS script not loaded.");
+                    document.body.innerHTML += "<p style='color:red;'>Error: CMS is not defined. Try refreshing the page.</p>";
+                }
             } catch (error) {
                 console.error("Error initializing Decap CMS:", error);
                 document.body.innerHTML += "<p style='color:red;'>Error loading CMS. Check the console for details.</p>";
