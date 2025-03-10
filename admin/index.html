@@ -7,8 +7,19 @@
     <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 </head>
 <body>
+    <h1>Admin Panel</h1>
+    <p>If you see this text but no CMS panel, check your browser console for errors.</p>
+
     <script>
-        CMS.init();
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                CMS.init();
+                console.log("Decap CMS loaded successfully.");
+            } catch (error) {
+                console.error("Error initializing Decap CMS:", error);
+                document.body.innerHTML += "<p style='color:red;'>Error loading CMS. Check the console for details.</p>";
+            }
+        });
     </script>
 </body>
 </html>
