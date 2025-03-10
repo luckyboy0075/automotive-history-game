@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
     const token = event.headers.authorization.split(" ")[1];
 
     try {
-        const response = await fetch(`https://YOUR_AUTH0_DOMAIN/userinfo`, {
+        const response = await fetch(`https://${process.env.AUTH0_DOMAIN}/userinfo`, {
             headers: { Authorization: `Bearer ${token}` },
         });
 
