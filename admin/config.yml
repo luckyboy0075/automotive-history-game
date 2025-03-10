@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main  # Change to "master" if your repo uses master as the default branch
 
-auth_provider: netlify  # Use Netlify authentication, which connects to Auth0
+auth_provider: netlify  # Allows Netlify Identity fallback if needed
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"

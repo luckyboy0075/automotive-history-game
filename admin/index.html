@@ -10,7 +10,16 @@
     <h1>Admin Panel</h1>
     <p>If you see this text but no CMS panel, check your browser console for errors.</p>
 
+    <div>
+        <h2>Login Options</h2>
+        <button onclick="loginWithAuth0()">Login with Auth0</button>
+    </div>
+
     <script>
+        function loginWithAuth0() {
+            window.location.href = "https://YOUR_AUTH0_TENANT.auth0.com/authorize?client_id=YOUR_CLIENT_ID&response_type=token&redirect_uri=https://petrolheadsgame.com/admin/";
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             try {
                 setTimeout(() => {
@@ -27,23 +36,6 @@
                 document.body.innerHTML += "<p style='color:red;'>Error loading CMS. Check the console for details.</p>";
             }
         });
-    </script>
-
-    <div>
-        <h2>Login Options</h2>
-        <button onclick="netlifyIdentity.open()">Login with Netlify</button>
-    </div>
-
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", (user) => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
     </script>
 </body>
 </html>
