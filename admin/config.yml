@@ -11,6 +11,7 @@ collections:
     label: "Goals"
     folder: "content/goals"
     create: true
+    format: "json"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
