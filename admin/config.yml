@@ -1,0 +1,27 @@
+backend:
+  name: git-gateway
+  branch: main  # Change to your repository's default branch (e.g., "master" or "main")
+
+media_folder: "images/uploads"  # Where media files are stored
+public_folder: "/images/uploads"
+
+collections:
+  - name: "goals"
+    label: "Goals"
+    folder: "content/goals"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Status", name: "status", widget: "select", options: ["In Progress", "Future", "Achieved"] }
+      - { label: "Progress (%)", name: "progress", widget: "number", value_type: "int", min: 0, max: 100 }
+      - { label: "Image", name: "image", widget: "image", required: false }
+
+  - name: "features"
+    label: "Key Features"
+    folder: "content/features"
+    create: true
+    fields:
+      - { label: "Feature Title", name: "title", widget: "string" }
+      - { label: "Feature Description", name: "description", widget: "text" }
+      - { label: "Feature Image", name: "image", widget: "image", required: false }
