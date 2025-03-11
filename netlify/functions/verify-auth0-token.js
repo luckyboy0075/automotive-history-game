@@ -1,10 +1,10 @@
 const fetch = require("node-fetch");
 
-exports.handler = async (event, context) => {
-    // Extract token from Authorization header
+exports.handler = async (event) => {
     const token = event.headers.authorization?.split(" ")[1];
 
     if (!token) {
+        console.warn("No token provided in request.");
         return {
             statusCode: 401,
             body: JSON.stringify({ success: false, error: "Unauthorized - No token provided" }),
@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
         }
 
         const user = await response.json();
-        console.log("User verified:", user);
+        console.log("User successfully verified:", user);
 
         return {
             statusCode: 200,
