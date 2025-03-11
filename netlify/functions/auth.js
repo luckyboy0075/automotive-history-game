@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
         const user = await response.json();
         return {
             statusCode: 200,
-            body: JSON.stringify(user),
+            body: JSON.stringify({ user }),
         };
     } catch (error) {
         return {
