@@ -1,37 +1,30 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 
-exports.handler = async (event) => {
-    const token = event.headers.authorization?.split(" ")[1];
+exports.handler = async (event, context) => {
+  const token = event.headers.authorization?.split(' ')[1];
 
-    if (!token) {
-        console.warn("No token provided in request.");
-        return {
-            statusCode: 401,
-            body: JSON.stringify({ success: false, error: "Unauthorized - No token provided" }),
-        };
-    }
+  if (!token) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ success: false, error: "Unauthorized - No token provided" }),
+    };
+  }
 
-    try {
-        const response = await fetch(`https://${process.env.AUTH0_DOMAIN}/userinfo`, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
+  const auth0Domain = process.env.AUTH0_DOMAIN;
+  const auth0Issuer = `https://${auth0Domain}/`;
 
-        if (!response.ok) {
-            throw new Error("Invalid token");
-        }
+  try {
+    const response = await fetch(`${auth0Issuer}.well-known/jwks.json`);
+    if (!response.ok) throw new Error('Failed to fetch Auth0 keys');
 
-        const user = await response.json();
-        console.log("User successfully verified:", user);
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ success: true, user }),
-        };
-    } catch (error) {
-        console.error("Auth0 verification error:", error);
-        return {
-            statusCode: 401,
-            body: JSON.stringify({ success: false, error: "Invalid or expired token" }),
-        };
-    }
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ success: true, message: "Token verified" }),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ success: false, error: error.message }),
+    };
+  }
 };

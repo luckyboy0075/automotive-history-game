@@ -5,3 +5,7 @@
   from = "/.netlify/functions/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+[secrets_scanning]
+  enabled = false
+  omit_paths = ["admin/config.yml"]
