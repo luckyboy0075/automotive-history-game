@@ -16,9 +16,14 @@
     </div>
 
     <script>
-        function loginWithAuth0() {
-            window.location.href = "https://petrolheadsgame.eu.auth0.com/authorize?client_id=YOUR_CLIENT_ID&response_type=token&redirect_uri=https://petrolheadsgame.com/admin/";
-        }
+          function loginWithAuth0() {
+              fetch('/.netlify/functions/auth-config')
+                  .then(response => response.json())
+                  .then(config => {
+                      window.location.href = `https://${config.AUTH0_DOMAIN}/authorize?client_id=${config.AUTH0_CLIENT_ID}&response_type=token&redirect_uri=${config.REDIRECT_URI}`;
+                  })
+                  .catch(error => console.error("Error loading Auth0 config:", error));
+          }
 
         document.addEventListener("DOMContentLoaded", function () {
             try {
