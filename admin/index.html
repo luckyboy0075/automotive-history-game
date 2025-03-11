@@ -78,13 +78,14 @@
             try {
                 setTimeout(() => {
                     if (typeof CMS !== "undefined") {
+                        console.log("Delaying Decap CMS initialization to prevent removeChild errors.");
                         CMS.init();
                         console.log("Decap CMS loaded successfully.");
                     } else {
                         console.error("Decap CMS script not loaded.");
                         document.body.innerHTML += "<p style='color:red;'>Error: CMS is not defined. Try refreshing the page.</p>";
                     }
-                }, 500);
+                }, 1000); // Increased delay
             } catch (error) {
                 console.error("Error initializing Decap CMS:", error);
                 document.body.innerHTML += "<p style='color:red;'>Error loading CMS. Check the console for details.</p>";
