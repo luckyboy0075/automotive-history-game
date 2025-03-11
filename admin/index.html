@@ -16,25 +16,19 @@
     </div>
 
     <script>
-        function loginWithAuth0() {
-            window.location.href = `https://${AUTH0_DOMAIN}/authorize?client_id=${AUTH0_CLIENT_ID}&response_type=token&redirect_uri=${window.location.origin}/admin/`;
-        }
+        async function loginWithAuth0() {
+            try {
+                const response = await fetch('/.netlify/functions/auth-config');
+                const config = await response.json();
 
-        // 🔹 Capture Auth0 Token & Redirect to Decap CMS
-        function handleAuth0Callback() {
-            const urlParams = new URLSearchParams(window.location.hash.substring(1));
-            const accessToken = urlParams.get("access_token");
-
-            if (accessToken) {
-                console.log("Auth0 login successful. Token received:", accessToken);
-                localStorage.setItem("auth0_token", accessToken);
-                window.location.href = "/admin/";
+                window.location.href = `https://${config.AUTH0_DOMAIN}/authorize?client_id=${config.AUTH0_CLIENT_ID}&response_type=token&redirect_uri=${window.location.origin}/admin/`;
+            } catch (error) {
+                console.error("Error fetching Auth0 config:", error);
+                alert("Failed to retrieve login settings. Please try again.");
             }
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            handleAuth0Callback();  // Check if login callback contains a token
-
             try {
                 setTimeout(() => {
                     if (typeof CMS !== "undefined") {
