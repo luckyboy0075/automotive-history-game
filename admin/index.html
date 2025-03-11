@@ -24,18 +24,51 @@
                 }
 
                 const config = await response.json();
-
                 const authUrl = `https://${config.AUTH0_DOMAIN}/authorize?` +
                     `client_id=${config.AUTH0_CLIENT_ID}&` +
                     `response_type=token&scope=openid profile email&` +
                     `redirect_uri=${window.location.origin}/admin/`;
 
-                console.log("Redirecting to:", authUrl); // Debug log
-
+                console.log("Redirecting to Auth0:", authUrl);
                 window.location.href = authUrl;
             } catch (error) {
                 console.error("Error fetching Auth0 config:", error);
                 alert("Failed to retrieve login settings. Please try again.");
+            }
+        }
+
+        function handleAuth0Callback() {
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = urlParams.get("access_token");
+
+            if (accessToken) {
+                console.log("Auth0 login successful. Token received:", accessToken);
+                localStorage.setItem("auth0_token", accessToken);
+
+                // Verify user and redirect to CMS
+                fetch('/.netlify/functions/verify-auth0-token', {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("User verified. Redirecting to CMS...");
+                        window.location.href = "/admin/#/";
+                    } else {
+                        console.error("Auth0 verification failed:", data);
+                        alert("Failed to verify user. Please try logging in again.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error verifying token:", error);
+                    alert("Authentication failed. Please log in again.");
+                });
+            } else {
+                console.warn("No access token found in URL.");
             }
         }
 
