@@ -1,9 +1,9 @@
 backend:
   name: auth0
   auth_type: implicit
-  app_id: YOUR_AUTH0_CLIENT_ID
-  region: YOUR_AUTH0_REGION
-  domain: YOUR_AUTH0_TENANT.auth0.com
+  app_id: wtqqTxmzjj1CyFm6CpbH1hAtAIfmcwm8
+  region: eu
+  domain: auth.petrolheadsgame.com
   redirect_uri: https://petrolheadsgame.com/admin/
   api_url: https://petrolheadsgame.com/.netlify/functions/verify-auth0-token
 
