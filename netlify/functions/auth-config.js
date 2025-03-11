@@ -4,7 +4,7 @@ exports.handler = async function () {
         body: JSON.stringify({
             AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
             AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
-            REDIRECT_URI: "https://your-site.netlify.app/admin/"
+            REDIRECT_URI: "https://petrolheadsgame.com/admin/"
         }),
     };
 };
