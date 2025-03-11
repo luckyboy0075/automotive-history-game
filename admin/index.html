@@ -56,7 +56,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        console.log("User verified. Redirecting to CMS...");
+                        console.log("User verified. Rendering Decap CMS UI...");
                         window.location.href = "/admin/#/";
                     } else {
                         console.error("Auth0 verification failed:", data);
@@ -78,19 +78,21 @@
             try {
                 setTimeout(() => {
                     if (typeof CMS !== "undefined") {
-                        console.log("Delaying Decap CMS initialization to prevent removeChild errors.");
+                        console.log("Forcing Decap CMS UI to render...");
+                        document.body.innerHTML = "<div id='nc-root'></div>";  // Ensure CMS container exists
                         CMS.init();
                         console.log("Decap CMS loaded successfully.");
                     } else {
                         console.error("Decap CMS script not loaded.");
                         document.body.innerHTML += "<p style='color:red;'>Error: CMS is not defined. Try refreshing the page.</p>";
                     }
-                }, 1000); // Increased delay
+                }, 1000); // Delaying initialization to prevent rendering issues
             } catch (error) {
                 console.error("Error initializing Decap CMS:", error);
                 document.body.innerHTML += "<p style='color:red;'>Error loading CMS. Check the console for details.</p>";
             }
         });
     </script>
+
 </body>
 </html>
