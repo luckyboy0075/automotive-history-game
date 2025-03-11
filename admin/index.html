@@ -56,7 +56,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        console.log("User verified. Rendering Decap CMS UI...");
+                        console.log("User verified. Redirecting to CMS...");
                         window.location.href = "/admin/#/";
                     } else {
                         console.error("Auth0 verification failed:", data);
@@ -86,7 +86,7 @@
                         console.error("Decap CMS script not loaded.");
                         document.body.innerHTML += "<p style='color:red;'>Error: CMS is not defined. Try refreshing the page.</p>";
                     }
-                }, 1000); // Delaying initialization to prevent rendering issues
+                }, 1000); // Increased delay to prevent issues
             } catch (error) {
                 console.error("Error initializing Decap CMS:", error);
                 document.body.innerHTML += "<p style='color:red;'>Error loading CMS. Check the console for details.</p>";

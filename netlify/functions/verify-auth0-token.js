@@ -1,14 +1,15 @@
 const fetch = require("node-fetch");
 
 exports.handler = async (event, context) => {
-    if (!event.headers.authorization) {
+    // Extract token from Authorization header
+    const token = event.headers.authorization?.split(" ")[1];
+
+    if (!token) {
         return {
             statusCode: 401,
             body: JSON.stringify({ success: false, error: "Unauthorized - No token provided" }),
         };
     }
-
-    const token = event.headers.authorization.split(" ")[1];
 
     try {
         const response = await fetch(`https://${process.env.AUTH0_DOMAIN}/userinfo`, {
@@ -20,11 +21,14 @@ exports.handler = async (event, context) => {
         }
 
         const user = await response.json();
+        console.log("User verified:", user);
+
         return {
             statusCode: 200,
             body: JSON.stringify({ success: true, user }),
         };
     } catch (error) {
+        console.error("Auth0 verification error:", error);
         return {
             statusCode: 401,
             body: JSON.stringify({ success: false, error: "Invalid or expired token" }),
