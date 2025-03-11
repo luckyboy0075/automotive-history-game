@@ -1,6 +1,11 @@
 backend:
-  name: git-gateway
-  branch: main  # Change to "master" if your repo uses master as the default branch
+  name: auth0
+  auth_type: implicit
+  app_id: YOUR_AUTH0_CLIENT_ID
+  region: YOUR_AUTH0_REGION
+  domain: YOUR_AUTH0_TENANT.auth0.com
+  redirect_uri: https://petrolheadsgame.com/admin/
+  api_url: https://petrolheadsgame.com/.netlify/functions/verify-auth0-token
 
 auth_provider: netlify  # Allows Netlify Identity fallback if needed
 
