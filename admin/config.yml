@@ -1,24 +1,25 @@
 backend:
   name: auth0
-  auth_type: implicit
-  region: eu
-  redirect_uri: https://petrolheadsgame.com/admin/
-  api_url: https://petrolheadsgame.com/.netlify/functions/verify-auth0-token
+  domain: petrolheadsgame.eu.auth0.com  # Your Auth0 domain
+  client_id: wtqqTxmzjj1CyFm6CpbH1hAtAIfmcwm8  # Found in Auth0 dashboard
+  scope: "openid profile email"
+  redirect_uri: "https://petrolheadsgame.com/admin/"
+  auth_type: "implicit"
 
-auth_provider: netlify  # Allows Netlify Identity fallback if needed
+local_backend: false
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_library:
+  name: uploadcare
+  config:
+    publicKey: YOUR_UPLOADCARE_PUBLIC_KEY  # Optional
 
 collections:
-  - name: "goals"
-    label: "Goals"
-    folder: "content/goals"
-    create: true
-    format: "json"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Status", name: "status", widget: "select", options: ["In Progress", "Future", "Achieved"] }
-      - { label: "Progress (%)", name: "progress", widget: "number", value_type: "int", min: 0, max: 100 }
-      - { label: "Image", name: "image", widget: "image", required: false }
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "content/home.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
