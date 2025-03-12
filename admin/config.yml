@@ -1,7 +1,7 @@
 backend:
   name: auth0
-  domain: petrolheadsgame.eu.auth0.com  # Your Auth0 domain
-  client_id: wtqqTxmzjj1CyFm6CpbH1hAtAIfmcwm8  # Found in Auth0 dashboard
+  domain: ${AUTH0_DOMAIN}
+  client_id: ${AUTH0_CLIENT_ID}
   scope: "openid profile email"
   redirect_uri: "https://petrolheadsgame.com/admin/"
   auth_type: "implicit"
