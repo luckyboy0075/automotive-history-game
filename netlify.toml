@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "out"  # Ensure this is correct for your framework
+  publish = ".next"
 
 [[redirects]]
   from = "/*"

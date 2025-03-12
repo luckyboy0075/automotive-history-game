@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Automotive History Game</title>
+    <script src="https://cdn.auth0.com/js/auth0/9.19/auth0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <button id="login-btn">Login with Auth0</button>
+        <button id="logout-btn" style="display:none;">Logout</button>
+    </header>
+
+    <main id="admin-content">
+        <p>If you are logged in, you will see the CMS here.</p>
+    </main>
+
+    <script>
+        const auth0Client = new auth0.WebAuth({
+            domain: "automotivehistorygame.eu.auth0.com",
+            clientID: "YOUR_AUTH0_CLIENT_ID",
+            redirectUri: "https://automotivehistorygame.com/admin/",
+            responseType: "token id_token",
+            scope: "openid profile email"
+        });
+
+        document.getElementById('login-btn').addEventListener('click', () => {
+            auth0Client.authorize();
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem("auth_token");
+            localStorage.removeItem("id_token");
+            window.location.href = "https://automotivehistorygame.com/admin/";
+        });
+
+        function handleAuthentication() {
+            auth0Client.parseHash((err, authResult) => {
+                if (authResult && authResult.accessToken && authResult.idToken) {
+                    localStorage.setItem("auth_token", authResult.accessToken);
+                    localStorage.setItem("id_token", authResult.idToken);
+                    document.getElementById('login-btn').style.display = "none";
+                    document.getElementById('logout-btn').style.display = "block";
+                    loadAdminPanel();
+                } else if (err) {
+                    console.error("Error during authentication:", err);
+                }
+            });
+        }
+
+        function loadAdminPanel() {
+            document.getElementById('admin-content').innerHTML = `
+                <iframe src="https://automotivehistorygame.com/admin/cms/" style="width:100%; height:100vh; border:none;"></iframe>
+            `;
+        }
+
+        window.onload = handleAuthentication;
+    </script>
+</body>
+</html>

@@ -14,8 +14,8 @@ exports.handler = async (event, context) => {
   const auth0Issuer = `https://${auth0Domain}/`;
 
   try {
-    const response = await fetch(`${auth0Issuer}.well-known/jwks.json`);
-    if (!response.ok) throw new Error('Failed to fetch Auth0 keys');
+    const response = await fetch(`${auth0Issuer}.well-known/openid-configuration`);
+    if (!response.ok) throw new Error('Failed to fetch Auth0 configuration');
 
     return {
       statusCode: 200,
