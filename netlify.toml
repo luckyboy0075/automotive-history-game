@@ -1,12 +1,8 @@
 [build]
   command = "npm run build"
-  functions = "netlify/functions"
+  publish = "out"  # Ensure this is correct for your framework
 
 [[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
+  from = "/*"
+  to = "/index.html"
   status = 200
-
-[secrets_scanning]
-  enabled = false
-  omit_paths = ["admin/config.yml"]
