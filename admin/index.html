@@ -17,6 +17,18 @@
     </div>
 
     <script>
+      fetch("/.netlify/functions/config")
+          .then(response => response.text())
+          .then(yaml => {
+              const script = document.createElement("script");
+              script.type = "text/yaml";
+              script.innerHTML = yaml;
+              document.head.appendChild(script);
+              console.log("✅ Loaded dynamic Decap CMS config.");
+          })
+          .catch(err => console.error("⚠️ Error loading CMS config:", err));
+
+
         function loginWithAuth0() {
             window.location.href = "https:/auth.petrolheadsgame.com/authorize?" +
             "client_id=${AUTH0_CLIENT_ID}" +
