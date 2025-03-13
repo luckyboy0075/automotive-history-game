@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async (event, context) => {
+export async function handler(event, context) {
   const token = event.headers.authorization?.split(' ')[1];
 
   if (!token) {
@@ -27,4 +27,4 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ success: false, error: error.message }),
     };
   }
-};
+}
