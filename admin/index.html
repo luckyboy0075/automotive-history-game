@@ -4,23 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel | Automotive History Game</title>
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-    <script src="https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js"></script>
 </head>
 <body>
-    <script>
-        fetch("/.netlify/functions/config")
-            .then(response => response.text())
-            .then(yaml => {
-                const script = document.createElement("script");
-                script.type = "text/yaml";
-                script.innerHTML = yaml;
-                document.head.appendChild(script);
-                console.log("✅ Loaded dynamic Decap CMS config.");
-            })
-            .catch(err => console.error("⚠️ Error loading CMS config:", err));
+    <h1>Loading Admin Panel...</h1>
 
-        CMS.registerBackend('auth0', decapCmsAuth0Backend);
+    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js"></script>
+
+    <script>
+        // Ensure Decap CMS and Auth0 are properly loaded
+        window.addEventListener("load", function() {
+            fetch("/.netlify/functions/config")
+                .then(response => response.text())
+                .then(yaml => {
+                    const script = document.createElement("script");
+                    script.type = "text/yaml";
+                    script.innerHTML = yaml;
+                    document.head.appendChild(script);
+                    console.log("✅ Loaded dynamic Decap CMS config.");
+
+                    // Register backend AFTER config loads
+                    if (window.CMS) {
+                        CMS.registerBackend('auth0', decapCmsAuth0Backend);
+                        console.log("✅ Auth0 backend registered in Decap CMS.");
+                    } else {
+                        console.error("❌ CMS is not loaded. Check the Decap CMS script.");
+                    }
+                })
+                .catch(err => console.error("⚠️ Error loading CMS config:", err));
+        });
     </script>
+
 </body>
 </html>
