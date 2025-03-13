@@ -1,7 +1,7 @@
 backend:
   name: auth0
-  domain: ${AUTH0_DOMAIN}
-  client_id: ${AUTH0_CLIENT_ID}
+  client_id: "${AUTH0_CLIENT_ID}" # Should match your actual Auth0 Client ID
+  domain: "${AUTH0_DOMAIN}" # Should match your Auth0 domain (e.g., auth.petrolheadsgame.com)
   scope: "openid profile email"
   redirect_uri: "https://petrolheadsgame.com/admin/"
   auth_type: "implicit"
