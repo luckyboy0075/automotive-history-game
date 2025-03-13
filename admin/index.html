@@ -4,45 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel | Automotive History Game</title>
-
-    <!-- Load Decap CMS Scripts -->
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-    <script src="https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js"></script>
 </head>
 <body>
     <h1>Loading Admin Panel...</h1>
 
+    <!-- Load Decap CMS and Auth0 Backend -->
+    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
     <script>
-        function initializeCMS() {
-            if (typeof CMS !== "undefined") {
-                console.log("✅ Decap CMS successfully loaded.");
-
-                fetch("/.netlify/functions/config")
-                    .then(response => response.text())
-                    .then(yaml => {
-                        const script = document.createElement("script");
-                        script.type = "text/yaml";
-                        script.innerHTML = yaml;
-                        document.head.appendChild(script);
-                        console.log("✅ Loaded dynamic Decap CMS config.");
-
-                        // Register backend AFTER CMS loads
-                        try {
-                            CMS.registerBackend('auth0', window.decapCmsAuth0Backend);
-                            console.log("✅ Auth0 backend registered in Decap CMS.");
-                        } catch (err) {
-                            console.error("❌ Error registering Auth0 backend in CMS:", err);
-                        }
-                    })
-                    .catch(err => console.error("⚠️ Error loading CMS config:", err));
-            } else {
-                console.error("❌ CMS is not loaded. Retrying in 500ms...");
-                setTimeout(initializeCMS, 500); // Retry loading CMS
+        // Ensure Decap CMS is fully loaded before executing
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof CMS === "undefined") {
+                console.error("❌ CMS failed to load. Check script source or network issues.");
+                return;
             }
-        }
+            console.log("✅ Decap CMS successfully loaded.");
 
-        // Ensure CMS is fully loaded before execution
-        window.addEventListener("load", initializeCMS);
+            fetch("/.netlify/functions/config")
+                .then(response => response.text())
+                .then(yaml => {
+                    const script = document.createElement("script");
+                    script.type = "text/yaml";
+                    script.innerHTML = yaml;
+                    document.head.appendChild(script);
+                    console.log("✅ Loaded dynamic Decap CMS config.");
+
+                    // Register Auth0 backend AFTER config loads
+                    CMS.registerBackend('auth0', window.decapCmsAuth0Backend);
+                    console.log("✅ Auth0 backend registered in Decap CMS.");
+                })
+                .catch(err => console.error("⚠️ Error loading CMS config:", err));
+        });
     </script>
 
 </body>
