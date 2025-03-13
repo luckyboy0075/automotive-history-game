@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel | Automotive History Game</title>
 
-    <!-- Load Decap CMS & Auth0 Backend -->
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-    <script src="https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js"></script>
-
+    <!-- Load Decap CMS Scripts -->
+    <script defer src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <script defer src="https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js"></script>
 </head>
 <body>
     <h1>Loading Admin Panel...</h1>
 
     <script>
-        window.addEventListener("load", function() {
+        // Ensure CMS is loaded before execution
+        function checkCMSLoaded() {
             if (typeof CMS === "undefined") {
-                console.error("❌ CMS failed to load. Check script source or network issues.");
+                console.error("❌ CMS failed to load. Retrying in 1s...");
+                setTimeout(checkCMSLoaded, 1000);
                 return;
             }
+
             console.log("✅ Decap CMS successfully loaded.");
 
             fetch("/.netlify/functions/config")
@@ -30,7 +32,7 @@
                     document.head.appendChild(script);
                     console.log("✅ Loaded dynamic Decap CMS config.");
 
-                    // Ensure auth0 backend is properly registered
+                    // Register backend AFTER CMS loads
                     if (typeof window.decapCmsAuth0Backend !== "undefined") {
                         CMS.registerBackend('auth0', window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
                         console.log("✅ Auth0 backend registered in Decap CMS.");
@@ -39,7 +41,10 @@
                     }
                 })
                 .catch(err => console.error("⚠️ Error loading CMS config:", err));
-        });
+        }
+
+        // Wait for DOM to load fully before initializing CMS
+        window.addEventListener("DOMContentLoaded", checkCMSLoaded);
     </script>
 
 </body>
