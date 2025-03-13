@@ -19,7 +19,7 @@
     <script>
         function loginWithAuth0() {
             window.location.href = "https:/auth.petrolheadsgame.com/authorize?" +
-            "client_id=AUTH0_CLIENT_ID" +
+            "client_id=${AUTH0_CLIENT_ID}" +
             "&response_type=token" +
             "&scope=openid profile email" +
             "&redirect_uri=https://petrolheadsgame.com/admin/";

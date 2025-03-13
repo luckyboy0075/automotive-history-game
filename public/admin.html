@@ -20,7 +20,7 @@
     <script>
         const auth0Client = new auth0.WebAuth({
             domain: "auth.petrolheadsgame.com",
-            clientID: "AUTH0_CLIENT_ID",
+            clientID: "${AUTH0_CLIENT_ID}",
             redirectUri: "https://petrolheadsgame.com/admin/",
             responseType: "token id_token",
             scope: "openid profile email"
