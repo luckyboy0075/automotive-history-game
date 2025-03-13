@@ -19,9 +19,9 @@
 
     <script>
         const auth0Client = new auth0.WebAuth({
-            domain: "automotivehistorygame.eu.auth0.com",
+            domain: "auth.petrolheadsgame.com",
             clientID: "YOUR_AUTH0_CLIENT_ID",
-            redirectUri: "https://automotivehistorygame.com/admin/",
+            redirectUri: "https://petrolheadsgame.com/admin/",
             responseType: "token id_token",
             scope: "openid profile email"
         });
@@ -52,7 +52,7 @@
 
         function loadAdminPanel() {
             document.getElementById('admin-content').innerHTML = `
-                <iframe src="https://automotivehistorygame.com/admin/cms/" style="width:100%; height:100vh; border:none;"></iframe>
+                <iframe src="https://petrolheadsgame.com/admin/cms/" style="width:100%; height:100vh; border:none;"></iframe>
             `;
         }
 
