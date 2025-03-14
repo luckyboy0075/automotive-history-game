@@ -13,29 +13,38 @@
 
     <script>
     function loadAuth0Backend() {
-            let auth0Script = document.createElement("script");
-            auth0Script.src = "https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js";
-            auth0Script.onload = function () {
-                console.log("✅ Auth0 backend script loaded.");
-                if (typeof window.decapCmsAuth0Backend !== "undefined") {
-                    CMS.registerBackend("auth0", window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
-                    console.log("✅ Auth0 backend registered in Decap CMS.");
-                } else {
-                    console.error("❌ Auth0 backend is still missing. Trying alternative registration.");
-                    try {
-                        CMS.registerBackend("auth0", decapCmsAuth0Backend);
-                        console.log("✅ Auth0 backend registered using alternative method.");
-                    } catch (error) {
-                        console.error("❌ Alternative Auth0 registration failed. Check the script import.");
-                    }
+        let auth0Script = document.createElement("script");
+        auth0Script.src = "https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js";
+        auth0Script.async = true;
+
+        auth0Script.onload = function () {
+            console.log("✅ Auth0 backend script loaded.");
+            if (typeof window.decapCmsAuth0Backend !== "undefined") {
+                CMS.registerBackend("auth0", window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
+                console.log("✅ Auth0 backend registered in Decap CMS.");
+            } else {
+                console.error("❌ Auth0 backend is still missing. Trying alternative registration.");
+                try {
+                    CMS.registerBackend("auth0", decapCmsAuth0Backend);
+                    console.log("✅ Auth0 backend registered using alternative method.");
+                } catch (error) {
+                    console.error("❌ Alternative Auth0 registration failed. Retrying in 3s...");
+                    setTimeout(loadAuth0Backend, 3000); // Retry after 3 seconds
                 }
-            };
-            auth0Script.onerror = function () {
-                console.error("❌ Failed to load Auth0 backend script. Retrying in 2s...");
-                setTimeout(loadAuth0Backend, 2000); // Retry loading after 2 seconds
-            };
-            document.head.appendChild(auth0Script);
             }
+        };
+
+        auth0Script.onerror = function () {
+            console.error("❌ Failed to load Auth0 backend script. Retrying in 5s...");
+            setTimeout(loadAuth0Backend, 5000); // Retry in 5 seconds if script fails
+        };
+
+        document.head.appendChild(auth0Script);
+    }
+
+    // Load Auth0 Backend **after CMS and config are loaded**
+    setTimeout(loadAuth0Backend, 2000);
+
 
             // Load Auth0 Backend after CMS is ready
         setTimeout(loadAuth0Backend, 1000);
