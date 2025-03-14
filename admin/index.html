@@ -12,6 +12,27 @@
     <h1>Loading Admin Panel...</h1>
 
     <script>
+        class Auth0Backend {
+            constructor(config) {
+                this.config = config;
+                console.log("✅ Auth0 backend initialized with config:", config);
+            }
+
+            async authenticate() {
+                return new Promise((resolve, reject) => {
+                    console.log("🔐 Authenticating with Auth0...");
+                    resolve({
+                        token: "mocked-auth0-token",
+                        user: { email: "user@petrolheadsgame.com" }
+                    });
+                });
+            }
+
+            async logout() {
+                console.log("🚪 Logging out from Auth0...");
+            }
+        }
+
         function registerAuth0Backend() {
             if (typeof CMS === "undefined") {
                 console.error("❌ CMS is not loaded. Retrying in 2s...");
@@ -21,36 +42,14 @@
 
             console.log("✅ Decap CMS successfully loaded.");
 
-            // Register Auth0 manually
             try {
-                CMS.registerBackend("auth0", {
-                    init: (config) => {
-                        return {
-                            authProvider: "auth0",
-                            config
-                        };
-                    },
-                    authenticate: (credentials) => {
-                        return new Promise((resolve, reject) => {
-                            console.log("🔐 Authenticating with Auth0...");
-                            // Simulate an Auth0 response
-                            resolve({
-                                token: "mocked-auth0-token",
-                                user: { email: "user@petrolheadsgame.com" }
-                            });
-                        });
-                    },
-                    logout: () => {
-                        console.log("🚪 Logging out from Auth0...");
-                    }
-                });
-                console.log("✅ Auth0 backend manually registered.");
+                CMS.registerBackend("auth0", Auth0Backend);
+                console.log("✅ Auth0 backend registered in Decap CMS.");
             } catch (error) {
-                console.error("❌ Failed to register Auth0 backend manually:", error);
+                console.error("❌ Failed to register Auth0 backend:", error);
             }
         }
 
-        // Ensure CMS is loaded before registering the Auth0 backend
         window.addEventListener("load", registerAuth0Backend);
     </script>
 
