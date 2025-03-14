@@ -12,6 +12,64 @@
     <h1>Loading Admin Panel...</h1>
 
     <script>
+    function loadAuth0Backend() {
+            let auth0Script = document.createElement("script");
+            auth0Script.src = "https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js";
+            auth0Script.onload = function () {
+                console.log("✅ Auth0 backend script loaded.");
+                if (typeof window.decapCmsAuth0Backend !== "undefined") {
+                    CMS.registerBackend("auth0", window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
+                    console.log("✅ Auth0 backend registered in Decap CMS.");
+                } else {
+                    console.error("❌ Auth0 backend is still missing. Trying alternative registration.");
+                    try {
+                        CMS.registerBackend("auth0", decapCmsAuth0Backend);
+                        console.log("✅ Auth0 backend registered using alternative method.");
+                    } catch (error) {
+                        console.error("❌ Alternative Auth0 registration failed. Check the script import.");
+                    }
+                }
+            };
+            auth0Script.onerror = function () {
+                console.error("❌ Failed to load Auth0 backend script. Retrying in 2s...");
+                setTimeout(loadAuth0Backend, 2000); // Retry loading after 2 seconds
+            };
+            document.head.appendChild(auth0Script);
+            }
+
+            // Load Auth0 Backend after CMS is ready
+        setTimeout(loadAuth0Backend, 1000);
+        function loadCMSConfig() {
+            fetch("/.netlify/functions/config")
+                .then(response => response.text())
+                .then(yaml => {
+                    const script = document.createElement("script");
+                    script.type = "text/yaml";
+                    script.innerHTML = yaml;
+                    document.head.appendChild(script);
+                    console.log("✅ Loaded dynamic Decap CMS config.");
+                })
+                .catch(err => console.error("⚠️ Error loading CMS config:", err));
+        }
+
+        // Ensure CMS is fully loaded before running any scripts
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof CMS === "undefined") {
+                console.error("❌ CMS is not loaded. Retrying in 2s...");
+                setTimeout(() => {
+                    if (typeof CMS !== "undefined") {
+                        console.log("✅ CMS loaded on retry.");
+                        loadCMSConfig();
+                    } else {
+                        console.error("❌ CMS is still missing after retry.");
+                    }
+                }, 2000);
+            } else {
+                console.log("✅ CMS successfully loaded.");
+                loadCMSConfig();
+            }
+        });
+
         function loadCMS() {
             // Check if CMS is loaded before executing
             if (typeof CMS === "undefined") {
