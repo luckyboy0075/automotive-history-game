@@ -5,17 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel | Automotive History Game</title>
 
-    <!-- Load Decap CMS & Auth0 Backend -->
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <!-- Load Decap CMS Scripts -->
+    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js" defer></script>
+</head>
+<body>
+    <h1>Loading Admin Panel...</h1>
+
     <script>
-        window.addEventListener("load", function () {
+        function loadCMS() {
+            // Check if CMS is loaded before executing
             if (typeof CMS === "undefined") {
-                console.error("❌ CMS failed to load. Check script source or network issues.");
+                console.error("❌ CMS failed to load. Retrying in 1s...");
+                setTimeout(loadCMS, 1000);
                 return;
             }
 
             console.log("✅ Decap CMS successfully loaded.");
 
+            // Load Auth0 backend script dynamically
+            let auth0Script = document.createElement("script");
+            auth0Script.src = "https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js";
+            auth0Script.onload = function () {
+                console.log("✅ Auth0 backend script loaded.");
+                if (typeof window.decapCmsAuth0Backend !== "undefined") {
+                    CMS.registerBackend("auth0", window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
+                    console.log("✅ Auth0 backend registered in Decap CMS.");
+                } else {
+                    console.error("❌ Auth0 backend is still missing. Check the script import.");
+                }
+            };
+            auth0Script.onerror = function () {
+                console.error("❌ Failed to load Auth0 backend script.");
+            };
+            document.head.appendChild(auth0Script);
+
+            // Fetch dynamic CMS configuration
             fetch("/.netlify/functions/config")
                 .then(response => response.text())
                 .then(yaml => {
@@ -24,29 +48,13 @@
                     script.innerHTML = yaml;
                     document.head.appendChild(script);
                     console.log("✅ Loaded dynamic Decap CMS config.");
-
-                    // Load the Auth0 backend script dynamically
-                    let auth0Script = document.createElement("script");
-                    auth0Script.src = "https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js";
-                    auth0Script.onload = function () {
-                        console.log("✅ Auth0 backend script loaded.");
-                        if (typeof window.decapCmsAuth0Backend !== "undefined") {
-                            CMS.registerBackend("auth0", window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
-                            console.log("✅ Auth0 backend registered in Decap CMS.");
-                        } else {
-                            console.error("❌ Auth0 backend is still missing. Check the script import.");
-                        }
-                    };
-                    auth0Script.onerror = function () {
-                        console.error("❌ Failed to load Auth0 backend script.");
-                    };
-                    document.head.appendChild(auth0Script);
                 })
                 .catch(err => console.error("⚠️ Error loading CMS config:", err));
-        });
+        }
+
+        // Ensure CMS is fully loaded before execution
+        window.addEventListener("load", loadCMS);
     </script>
-</head>
-<body>
-    <h1>Loading Admin Panel...</h1>
+
 </body>
 </html>
