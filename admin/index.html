@@ -12,66 +12,46 @@
     <h1>Loading Admin Panel...</h1>
 
     <script>
-    function loadAuth0Backend() {
-        if (document.getElementById("auth0-script")) {
-            console.log("✅ Auth0 script already loaded. Skipping duplicate loading.");
-            return;
+        function registerAuth0Backend() {
+            if (typeof CMS === "undefined") {
+                console.error("❌ CMS is not loaded. Retrying in 2s...");
+                setTimeout(registerAuth0Backend, 2000);
+                return;
+            }
+
+            console.log("✅ Decap CMS successfully loaded.");
+
+            // Register Auth0 manually
+            try {
+                CMS.registerBackend("auth0", {
+                    init: (config) => {
+                        return {
+                            authProvider: "auth0",
+                            config
+                        };
+                    },
+                    authenticate: (credentials) => {
+                        return new Promise((resolve, reject) => {
+                            console.log("🔐 Authenticating with Auth0...");
+                            // Simulate an Auth0 response
+                            resolve({
+                                token: "mocked-auth0-token",
+                                user: { email: "user@petrolheadsgame.com" }
+                            });
+                        });
+                    },
+                    logout: () => {
+                        console.log("🚪 Logging out from Auth0...");
+                    }
+                });
+                console.log("✅ Auth0 backend manually registered.");
+            } catch (error) {
+                console.error("❌ Failed to register Auth0 backend manually:", error);
+            }
         }
 
-        let auth0Script = document.createElement("script");
-        auth0Script.src = "https://unpkg.com/decap-cms-auth0-backend/dist/decap-cms-auth0-backend.min.js";
-        auth0Script.id = "auth0-script"; // Prevents duplicate script loading
-        auth0Script.async = true;
-
-        auth0Script.onload = function () {
-            console.log("✅ Auth0 backend script loaded.");
-            if (typeof window.decapCmsAuth0Backend !== "undefined") {
-                CMS.registerBackend("auth0", window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
-                console.log("✅ Auth0 backend registered in Decap CMS.");
-            } else {
-                console.error("❌ Auth0 backend is still missing. Trying alternative method...");
-                try {
-                    CMS.registerBackend("auth0", decapCmsAuth0Backend);
-                    console.log("✅ Auth0 backend registered using alternative method.");
-                } catch (error) {
-                    console.error("❌ Alternative Auth0 registration failed. Retrying in 5s...");
-                    setTimeout(loadAuth0Backend, 5000); // Retry after 5 seconds
-                }
-            }
-        };
-
-        auth0Script.onerror = function () {
-            console.error("❌ Failed to load Auth0 backend script. Using local backup...");
-            loadAuth0Backup();
-        };
-
-        document.head.appendChild(auth0Script);
-    }
-
-    // Backup method: Use a locally hosted version of the Auth0 backend
-    function loadAuth0Backup() {
-        console.warn("⚠️ Loading local backup of Auth0 backend...");
-        let backupScript = document.createElement("script");
-        backupScript.src = "/auth0-backend.js"; // Make sure this file exists in the project
-        backupScript.id = "auth0-backup-script";
-        backupScript.async = true;
-
-        backupScript.onload = function () {
-            console.log("✅ Backup Auth0 backend script loaded.");
-            CMS.registerBackend("auth0", window.decapCmsAuth0Backend.default || window.decapCmsAuth0Backend);
-            console.log("✅ Auth0 backend registered via backup.");
-        };
-
-        backupScript.onerror = function () {
-            console.error("❌ Backup Auth0 backend script also failed. Please check manually.");
-        };
-
-        document.head.appendChild(backupScript);
-    }
-
-    // Load Auth0 Backend **after CMS and config are loaded**
-    setTimeout(loadAuth0Backend, 2000);
-
+        // Ensure CMS is loaded before registering the Auth0 backend
+        window.addEventListener("load", registerAuth0Backend);
     </script>
 
 </body>

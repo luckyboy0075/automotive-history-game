@@ -7,8 +7,8 @@ exports.handler = async () => {
         body: `
 backend:
   name: "auth0"
-  client_id: "${process.env.AUTH0_CLIENT_ID}"
-  domain: "${process.env.AUTH0_DOMAIN}"
+  client_id: "${process.env.AUTH0_CLIENT_ID || 'MISSING_AUTH0_CLIENT_ID'}"
+  domain: "${process.env.AUTH0_DOMAIN || 'MISSING_AUTH0_DOMAIN'}"
   redirect_uri: "https://petrolheadsgame.com/admin/"
 
 media_folder: "uploads"
