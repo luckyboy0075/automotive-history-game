@@ -31,6 +31,17 @@
             async logout() {
                 console.log("🚪 Logging out from Auth0...");
             }
+
+            // This method is required by Decap CMS for authentication UI
+            authComponent() {
+                console.log("📌 Returning a mock authentication component for Decap CMS.");
+                return () => {
+                    return `<div style="text-align:center">
+                                <h3>Login with Auth0</h3>
+                                <button onclick="alert('Mock login with Auth0')">Login</button>
+                            </div>`;
+                };
+            }
         }
 
         function registerAuth0Backend() {
@@ -52,5 +63,6 @@
 
         window.addEventListener("load", registerAuth0Backend);
     </script>
+
 </body>
 </html>
